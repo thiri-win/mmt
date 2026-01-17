@@ -10,6 +10,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Spatie\LaravelPdf\Facades\Pdf;
 
+use function PHPUnit\Framework\isNumeric;
+
 class OrderController extends Controller
 {
     /**
@@ -72,27 +74,29 @@ class OrderController extends Controller
             'sellItems.*.sell_qty' => 'required',
             'sellItems.*.sell_price' => 'required',
         ]);
+
         if (!is_numeric($validatedData['customer_id'])) {
             $validatedData['customer_id'] = Customer::firstOrCreate(['name' => $validatedData['customer_id']])->id;
         }
-        foreach ($validatedData['buyItems'] as $buyItem) {
+
+        foreach ($validatedData['buyItems'] as &$buyItem) {
             $dealerId = $buyItem['dealer_id'];
             $itemId = $buyItem['item_id'];
             if (!is_numeric($dealerId)) {
                 $newDealer = Dealer::firstOrCreate(['name' => $dealerId]);
-                $buyItems['dealer_id'] = $newDealer->id;
+                $buyItem['dealer_id'] = $newDealer->id;
             }
             if (!is_numeric($itemId)) {
                 $newItem = Item::firstOrCreate(['name' => $itemId]);
-                $buyItems['item_id'] = $newItem->id;
+                $buyItem['item_id'] = $newItem->id;
             }
         }
 
-        foreach ($validatedData['sellItems'] as $sellItem) {
+        foreach ($validatedData['sellItems'] as &$sellItem) {
             $itemId = $sellItem['item_id'];
             if (!is_numeric($itemId)) {
                 $newItem = Item::firstOrCreate(['name' => $itemId]);
-                $sellItems['item_id'] = $newItem->id;
+                $sellItem['item_id'] = $newItem->id;
             }
         }
 
@@ -129,7 +133,84 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        dd("here");
+        $validatedData = $request->validate([
+            'date' => 'required|date',
+            'location' => 'required|string',
+            'car_rent_cost' => 'required|numeric',
+            'grand_total' => 'required|numeric',
+            'customer_id' => 'required',
+            'count' => 'required',
+
+            'buyItems' => 'required|array',
+            'buyItems.*.id' => 'sometimes',
+            'buyItems.*.dealer_id' => 'required',
+            'buyItems.*.item_id' => 'required',
+            'buyItems.*.buy_qty' => 'required',
+            'buyItems.*.buy_price' => 'required',
+
+            'sellItems' => 'required|array',
+            'sellItems.*.id' => 'sometimes',
+            'sellItems.*.item_id' => 'required',
+            'sellItems.*.sell_qty' => 'required',
+            'sellItems.*.sell_price' => 'required',
+        ]);
+
+        if (!is_numeric($validatedData['customer_id'])) {
+            $validatedData['customer_id'] = Customer::firstOrCreate(['name' => $validatedData['customer_id']])->id;
+        }
+
+        foreach ($validatedData['buyItems'] as &$buyItem) {
+            $dealerId = $buyItem['dealer_id'];
+            $itemId = $buyItem['item_id'];
+            if (!is_numeric($dealerId)) {
+                $newDealer = Dealer::firstOrCreate(['name' => $dealerId]);
+                $buyItem['dealer_id'] = $newDealer->id;
+            }
+            if (!is_numeric($itemId)) {
+                $newItem = Item::firstOrCreate(['name' => $itemId]);
+                $buyItem['item_id'] = $newItem->id;
+            }
+        }
+
+        foreach ($validatedData['sellItems'] as &$sellItem) {
+            $itemId = $sellItem['item_id'];
+            if (!is_numeric($itemId)) {
+                $newItem = Item::firstOrCreate(['name' => $itemId]);
+                $sellItem['item_id'] = $newItem->id;
+            }
+        }
+
+        $order->update($validatedData);
+
+        $incomingBuyItems = collect($validatedData['buyItems'])
+            ->pluck('id')
+            ->filter(fn($id) => is_numeric($id) && $id > 0)
+            ->map(fn($id) => (int) $id)
+            ->all();;
+        $order->buyinfos()->whereNotIn('id', $incomingBuyItems)->delete();
+        foreach ($validatedData['buyItems'] as $item) {
+            if (!is_numeric($item['id'])) {
+                $order->buyinfos()->create($item);
+            } else {
+                $order->buyinfos()->find($item['id'])->update($item);
+            }
+        }
+
+        $incomingSellItems = collect($validatedData['sellItems'])
+            ->pluck('id')
+            ->filter(fn($id) => is_numeric($id) && $id > 0)
+            ->map(fn($id) => (int) $id)
+            ->all();;
+        $order->sellinfos()->whereNotIn('id', $incomingSellItems)->delete();
+        foreach ($validatedData['sellItems'] as $item) {
+            if (!is_numeric($item['id'])) {
+                $order->sellinfos()->create($item);
+            } else {
+                $order->sellinfos()->find($item['id'])->update($item);
+            }
+        }
+
+        return redirect()->route('orders.index');
     }
 
     /**

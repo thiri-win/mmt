@@ -31,8 +31,8 @@ const form = useForm({
     grand_total: props.order.grand_total,
     customer_id: props.order.customer_id,
     count: props.order.count,
-    buyInfos: props.order.buyinfos,
-    sellInfos: props.order.sellinfos,
+    buyItems: props.order.buyinfos,
+    sellItems: props.order.sellinfos,
 })
 
 const initTomSelect = () => {
@@ -49,7 +49,7 @@ const initTomSelect = () => {
 }
 
 const addBuyItem = async () => {
-    form.buyInfos.push({
+    form.buyItems.push({
         id: Math.random().toString(36).substring(2),
         dealer_id: '',
         item_id: '',
@@ -61,7 +61,7 @@ const addBuyItem = async () => {
 }
 
 const addSellItem = async () => {
-    form.sellInfos.push({
+    form.sellItems.push({
         id: Math.random().toString(36).substring(2),
         item_id: '',
         sell_qty: '',
@@ -72,17 +72,25 @@ const addSellItem = async () => {
 }
 
 const removeBuyItem = (item) => {
-    form.buyInfos = form.buyInfos.filter(i => i.id != item.id)
+    form.buyItems = form.buyItems.filter(i => i.id != item.id)
 }
 
 const removeSellItem = (item) => {
-    form.sellInfos = form.sellInfos.filter(i => i.id != item.id)
+    form.sellItems = form.sellItems.filter(i => i.id != item.id)
 }
 
 form.grand_total = computed(() => {
-    return (form.sellInfos.reduce((total, sellItem) => {
-        return total + (sellItem.sell_qty * sellItem.sell_price)
-    }, 0) + form.car_rent_cost) * form.count;
+    const itemsTotal = form.sellItems.reduce((total, sellItem) => {
+        const qty = Number(sellItem.sell_qty) || 0;
+        const price = Number(sellItem.sell_price) || 0;
+        return total + (qty * price);
+    }, 0);
+
+    const carRent = Number(form.car_rent_cost) || 0;
+
+    const count = Number(form.count) || 0;
+
+    return (itemsTotal + carRent) * count;
 })
 
 const submit = () => {
@@ -104,27 +112,37 @@ onMounted(() => {
                 <table>
                     <tr>
                         <td colspan="6">
-                            <input type="date" id="date" name="date" v-model="form.date" />
+                            <input type="date" id="date" name="date" v-model="form.date"
+                                :class="form.errors.date ? 'border-red-300' : ''" />
                         </td>
                     </tr>
-                    <tr v-for="(buyItem, index) in form.buyInfos" :key="buyItem.id">
+                    <tr v-for="(buyItem, index) in form.buyItems" :key="buyItem.id">
                         <td>
-                            <select :id="'dealer_id_' + index" placeholder="ဒိုင်" autocomplete="off" name="dealer_id" v-model="buyItem.dealer_id">
+                            <select :id="'dealer_id_' + index" placeholder="ဒိုင်" autocomplete="off" name="dealer_id"
+                                v-model="buyItem.dealer_id"
+                                :class="form.errors[`buyItems.${index}.dealer_id`] ? 'border-red-300' : ''">
                                 <option value="">ဒိုင်</option>
-                                <option v-for="dealer in dealers" :value="dealer.id" :key="dealer.id">{{ dealer.name }}</option>
+                                <option v-for="dealer in dealers" :value="dealer.id" :key="dealer.id">{{ dealer.name }}
+                                </option>
                             </select>
                         </td>
                         <td>
-                            <select :id="'item_id_' + index" placeholder="အမျိုးအစား" autocomplete="off" name="item_id" v-model="buyItem.item_id">
+                            <select :id="'item_id_' + index" placeholder="အမျိုးအစား" autocomplete="off" name="item_id"
+                                v-model="buyItem.item_id"
+                                :class="form.errors[`buyItems.${index}.item_id`] ? 'border-red-300' : ''">
                                 <option value="">အမျိုးအစား</option>
                                 <option v-for="item in items" :value="item.id" :key="item.id">{{ item.name }}</option>
                             </select>
                         </td>
                         <td>
-                            <input type="number" name="buy_qty" :id="'buy_qty_' + index" step="0.01" placeholder="ဝယ် ပမာဏ" v-model="buyItem.buy_qty" />
+                            <input type="number" name="buy_qty" :id="'buy_qty_' + index" step="0.01"
+                                placeholder="ဝယ် ပမာဏ" v-model="buyItem.buy_qty"
+                                :class="form.errors[`buyItems.${index}.buy_qty`] ? 'border-red-300' : ''" />
                         </td>
                         <td>
-                            <input type="number" name="buy_price" :id="'buy_price_' + index" step="0.01" placeholder="ဝယ် ဈေးနှုန်း" v-model="buyItem.buy_price" />
+                            <input type="number" name="buy_price" :id="'buy_price_' + index" step="0.01"
+                                placeholder="ဝယ် ဈေးနှုန်း" v-model="buyItem.buy_price"
+                                :class="form.errors[`buyItems.${index}.buy_price`] ? 'border-red-300' : ''" />
                         </td>
                         <td>
                             <span>{{ buyItem.buy_qty * buyItem.buy_price }}</span>
@@ -141,26 +159,34 @@ onMounted(() => {
                     </tr>
                     <tr>
                         <td class="align-top">
-                            <select id="customer_id" placeholder="မှာယူသူ" autocomplete="off" name="customer_id" v-model="form.customer_id">
+                            <select id="customer_id" placeholder="မှာယူသူ" autocomplete="off" name="customer_id"
+                                v-model="form.customer_id" :class="form.errors.customer_id ? 'border-red-300' : ''">
                                 <option value="">Select a person...</option>
-                                <option v-for="customer in customers" :value="customer.id" :key="customer.id">{{ customer.name }}</option>
+                                <option v-for="customer in customers" :value="customer.id" :key="customer.id">{{
+                                    customer.name }}</option>
                             </select>
                         </td>
                         <td colspan="5">
                             <table>
-                                <tr v-for="(sellItem, index) in form.sellInfos" :key="sellItem.id">
+                                <tr v-for="(sellItem, index) in form.sellItems" :key="sellItem.id">
                                     <td>
-                                        <select id="item_id" placeholder="အမျိုးအစား" autocomplete="off" name="item_id" v-model="sellItem.item_id" autofocus="
-">
+                                        <select id="item_id" placeholder="အမျိုးအစား" autocomplete="off" name="item_id"
+                                            v-model="sellItem.item_id" autofocus=""
+                                            :class="form.errors[`sellItems.${index}.item_id`] ? 'border-red-300' : ''">
                                             <option value="">အမျိုးအစား</option>
-                                            <option v-for="item in items" :value="item.id" :key="item.id">{{ item.name }}</option>
+                                            <option v-for="item in items" :value="item.id" :key="item.id">{{ item.name
+                                            }}</option>
                                         </select>
                                     </td>
                                     <td>
-                                        <input type="number" name="sell_qty" :id="'sell_qty_' + index" step="0.01" placeholder="ရောင်း ပမာဏ" v-model="sellItem.sell_qty" />
+                                        <input type="number" name="sell_qty" :id="'sell_qty_' + index" step="0.01"
+                                            placeholder="ရောင်း ပမာဏ" v-model="sellItem.sell_qty"
+                                            :class="form.errors[`sellItems.${index}.sell_qty`] ? 'border-red-300' : ''" />
                                     </td>
                                     <td>
-                                        <input type="number" name="sell_price" :id="'sell_price_' + index" step="0.01" placeholder="ရောင်း ဈေးနှုန်း" v-model="sellItem.sell_price" />
+                                        <input type="number" name="sell_price" :id="'sell_price_' + index" step="0.01"
+                                            placeholder="ရောင်း ဈေးနှုန်း" v-model="sellItem.sell_price"
+                                            :class="form.errors[`sellItems.${index}.sell_price`] ? 'border-red-300' : ''" />
                                     </td>
                                     <td>
                                         <span>{{ sellItem.sell_qty * sellItem.sell_price }}</span>
@@ -181,21 +207,26 @@ onMounted(() => {
                     </tr>
                     <tr>
                         <td colspan="2">
-                            <input type="text" id="location" name="location" placeholder="ပို့ဆောင်ရန်လိပ်စာ" v-model="form.location" />
+                            <input type="text" id="location" name="location" placeholder="ပို့ဆောင်ရန်လိပ်စာ"
+                                v-model="form.location" :class="form.errors.location ? 'border-red-300' : ''" />
                         </td>
                         <td colspan="2">
-                            <input type="number" id="car_rent_cost" name="car_rent_cost" placeholder="ကားခ" v-model="form.car_rent_cost" />
+                            <input type="number" id="car_rent_cost" name="car_rent_cost" placeholder="ကားခ"
+                                v-model="form.car_rent_cost"
+                                :class="form.errors.car_rent_cost ? 'border-red-300' : ''" />
                         </td>
                         <td>
-                            <input type="number" id="grand_total" name="grand_total" disabled placeholder="စုစုပေါင်း" v-model="form.grand_total" />
+                            <input type="number" id="grand_total" name="grand_total" disabled placeholder="စုစုပေါင်း"
+                                v-model="form.grand_total" :class="form.errors.grand_total ? 'border-red-300' : ''" />
                         </td>
                         <td>
-                            <input type="number" name="count" id="count" placeholder="ခေါက်ရေ" v-model="form.count">
+                            <input type="number" name="count" id="count" placeholder="ခေါက်ရေ" v-model="form.count"
+                                :class="form.errors.count ? 'border-red-300' : ''" />
                         </td>
                     </tr>
                     <tr>
                         <td>
-                            <button type="submit">Submit</button>
+                            <button type="submit">Update</button>
                         </td>
                     </tr>
                 </table>

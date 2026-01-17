@@ -59,13 +59,20 @@ const printUrl = computed(() => {
     
     return `/orders/print?${params}`;
 });
+
+const confirmDelete = (e) => {
+    if (!confirm('Are you sure you want to delete this order?')) {
+        e.preventDefault();
+    }
+}
+
 </script>
 <template>
     <AppLayout>
 
         <Head title="စာရင်းများကြည့်ရန်"></Head>
         <div class="container mx-auto p-5">
-            <div class="mb-4 flex items-end justify-evenly gap-3">
+            <div class="mb-4 flex flex-wrap items-end gap-3">
                 <div>
                     <label class="block text-sm font-medium mb-1" for="from">From</label>
                     <input id="from" type="date" v-model="form.from" class="border rounded px-2 py-1">
@@ -76,14 +83,14 @@ const printUrl = computed(() => {
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1" for="customer">မှာယူသူ</label>
-                    <select id="customer" v-model="form.customer" class="border rounded px-2 py-1">
+                    <select id="customer" v-model="form.customer" class="border rounded px-2 py-1 block">
                         <option value="">All</option>
                         <option v-for="c in customers" :key="c.id" :value="c.id">{{ c.name }}</option>
                     </select>
                 </div>
                 <div>
                     <label class="block text-sm font-medium mb-1" for="dealer">ဒိုင်</label>
-                    <select id="dealer" v-model="form.dealer" class="border rounded px-2 py-1">
+                    <select id="dealer" v-model="form.dealer" class="border rounded px-2 py-1 block">
                         <option value="">All</option>
                         <option v-for="d in dealers" :key="d.id" :value="d.id">{{ d.name }}</option>
                     </select>
@@ -137,7 +144,7 @@ const printUrl = computed(() => {
                             </td>
                             <td>
                                 <div v-for="(info, index) in order.buyinfos" :key="info.id">
-                                    {{ info.buy_price }}
+                                    {{ Number(info.buy_price).toLocaleString() }}
                                     <span v-if="index < order.buyinfos.length - 1"> + </span>
                                 </div>
                             </td>
@@ -157,17 +164,17 @@ const printUrl = computed(() => {
                             </td>
                             <td>
                                 <div v-for="(info, index) in order.sellinfos" :key="info.id">
-                                    {{ info.sell_price }}
+                                    {{ Number(info.sell_price).toLocaleString() }}
                                     <span v-if="index < order.sellinfos.length - 1"> + </span>
                                 </div>
                             </td>
-                            <td>{{ order.car_rent_cost }}</td>
+                            <td>{{ order.car_rent_cost.toLocaleString() }}</td>
                             <td>{{ order.count }}</td>
-                            <td>{{ order.grand_total }}</td>
+                            <td>{{ order.grand_total.toLocaleString() }}</td>
                             <td>{{ order.note }}</td>
                             <td class="text-center">
                                 <Link :href="`/orders/${order.id}/edit`" class="text-blue-500 border-blue-500 hover:bg-blue-500 hover:text-white">ပြင်ရန်</Link>
-                                <Link :href="`/orders/${order.id}`" method="delete" class="text-red-500 rounded-2xl! border-red-500 hover:bg-red-500 hover:text-white">ဖျက်ရန်</Link>
+                                <Link :href="`/orders/${order.id}`" method="delete" class="text-red-500 rounded-2xl! border-red-500 hover:bg-red-500 hover:text-white" :onBefore="()=>confirmDelete($event)">ဖျက်ရန်</Link>
                             </td>
                         </tr>
                     </template>

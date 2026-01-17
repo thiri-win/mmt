@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date("date");
             $table->foreignId("customer_id")->constrained();
             $table->string("location");
-            $table->string("car_rent_cost");
+            $table->integer("car_rent_cost");
             $table->integer("grand_total");
             $table->integer("count")->default(1);
             $table->string("note")->nullable();
