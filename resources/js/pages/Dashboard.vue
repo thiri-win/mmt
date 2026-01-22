@@ -3,7 +3,8 @@ import AppLayout from '@/layouts/AppLayout.vue';
 import { dashboard } from '@/routes';
 import { type BreadcrumbItem } from '@/types';
 import { Head } from '@inertiajs/vue3';
-import PlaceholderPattern from '../components/PlaceholderPattern.vue';
+import dayjs from 'dayjs';
+import { DownloadIcon } from 'lucide-vue-next';
 
 const breadcrumbs: BreadcrumbItem[] = [
     {
@@ -11,37 +12,49 @@ const breadcrumbs: BreadcrumbItem[] = [
         href: dashboard().url,
     },
 ];
+defineProps({
+    reports: Array,
+});
 </script>
 
 <template>
     <Head title="Dashboard" />
-
     <AppLayout :breadcrumbs="breadcrumbs">
-        <div
-            class="flex h-full flex-1 flex-col gap-4 overflow-x-auto rounded-xl p-4"
-        >
-            <div class="grid auto-rows-min gap-4 md:grid-cols-3">
-                <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
-                >
-                    <PlaceholderPattern />
-                </div>
-                <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
-                >
-                    <PlaceholderPattern />
-                </div>
-                <div
-                    class="relative aspect-video overflow-hidden rounded-xl border border-sidebar-border/70 dark:border-sidebar-border"
-                >
-                    <PlaceholderPattern />
-                </div>
-            </div>
-            <div
-                class="relative min-h-[100vh] flex-1 rounded-xl border border-sidebar-border/70 md:min-h-min dark:border-sidebar-border"
-            >
-                <PlaceholderPattern />
-            </div>
+        <div class="container mx-auto p-5">
+            <a href="/backup-database" class="link">
+                <DownloadIcon class="inline-block" />
+                DB Backup
+            </a>
+            <table class="my-table">
+                <thead>
+                    <tr>
+                        <th>Date</th>
+                        <th>ပစ္စည်းဝယ်</th>
+                        <th>ရငွေ</th>
+                        <th>အခြားကုန်ကျစရိတ်များ</th>
+                        <th>အမြတ်ငွေ</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="(report, index) in reports" :key="index">
+                        <td class="text-right">
+                            {{ dayjs(report.month).format('MMM - YYYY') }}
+                        </td>
+                        <td class="text-right">
+                            {{ Math.round(report.buyTotal).toLocaleString() }}
+                        </td>
+                        <td class="text-right">
+                            {{ Math.round(report.sellTotal).toLocaleString() }}
+                        </td>
+                        <td class="text-right">
+                            {{ Math.round(report.expense).toLocaleString() }}
+                        </td>
+                        <td class="text-right">
+                            {{ Math.round(report.netProfit).toLocaleString() }}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
         </div>
     </AppLayout>
 </template>

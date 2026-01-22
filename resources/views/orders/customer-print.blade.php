@@ -47,7 +47,7 @@
 
 <body>
     @php
-        $totalrows = 16;
+        $totalrows = 14;
         $chunks = $groups->chunk($totalrows);
         $allPageTotals = []; // စာမျက်နှာအလိုက် Total တွေကို သိမ်းဖို့ array
         $grandTotalAllPages = 0; // စာမျက်နှာအားလုံးပေါင်း Grand Total
@@ -133,7 +133,7 @@
             $grandTotalAllPages += $columnSum;
         @endphp
     @endforeach
-    
+
     {{-- Loop အကုန်လုံး ပြီးသွားတဲ့အခါ နောက်ဆုံးမှာ စာမျက်နှာ ၁ ခုထက်ပိုမှ Summary Page ထုတ်မည် --}}
     @if (count($chunks) > 1)
         <div class="page-break">

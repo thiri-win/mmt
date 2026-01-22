@@ -22,21 +22,21 @@ class DatabaseSeeder extends Seeder
     {
         // Create an admin user, then additional random users
         User::factory()->create([
-            'name' => 'Test User',
+            'name' => 'Thiri Win',
             'email' => 'admin@gmail.com',
             'password' => Hash::make('pass'),
             'email_verified_at' => now(),
             'two_factor_secret' => null,
         ]);
 
-        User::factory(9)->create();
+//        User::factory(9)->create();
 
         // Create domain data via factories
-        Customer::factory(30)->create();
-        Dealer::factory(10)->create();
-        Item::factory(50)->create();
-        Order::factory(40)->create();
-        BuyInfo::factory(40)->create();
-        SellInfo::factory(40)->create();
+//        Customer::factory(30)->create();
+//        Dealer::factory(10)->create();
+//        Item::factory(50)->create();
+//        Order::factory(40)->create();
+//        BuyInfo::factory(40)->create();
+//        SellInfo::factory(40)->create();
     }
 }

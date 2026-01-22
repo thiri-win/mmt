@@ -8,10 +8,9 @@
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
-    --font-sans:
-        Instrument Sans, ui-sans-serif, system-ui, sans-serif,
-        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-        'Noto Color Emoji';
+    --font-sans: Instrument Sans, ui-sans-serif, system-ui, sans-serif,
+    'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+    'Noto Color Emoji';
 
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
@@ -82,10 +81,9 @@
 @layer utilities {
     body,
     html {
-        --font-sans:
-            'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
-            'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
-            'Noto Color Emoji';
+        --font-sans: 'Instrument Sans', ui-sans-serif, system-ui, sans-serif,
+        'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
+        'Noto Color Emoji';
     }
 }
 
@@ -166,39 +164,76 @@
     * {
         @apply border-border outline-ring/50;
     }
+
     body {
         @apply bg-background text-foreground;
     }
 }
+
+h1 {
+    @apply text-2xl text-center mt-2 mb-4 font-bold;
+}
+
 label {
     @apply inline-block p-1;
 }
+
 input::placeholder,
 select::placeholder {
     @apply text-sm text-gray-400;
 }
+
 table {
     @apply w-full table-fixed border-collapse;
 }
+
+table label {
+    @apply text-sm text-gray-400 italic;
+}
+
 input,
-table button,
 table span {
     @apply inline-block w-full rounded border p-1;
 }
-table button {
-    @apply px-3 text-nowrap;
-}
+
 table a {
     @apply my-1 inline-block rounded-2xl border p-1 px-2 text-sm;
 }
+
 td,
 th {
     @apply p-1;
 }
+
 .my-table span {
     @apply border-0 text-center;
 }
+
 .my-table td,
 .my-table th {
-    @apply border;
+    @apply border p-1;
+}
+
+.error {
+    @apply text-sm text-red-400;
+}
+
+.btn {
+    @apply border w-auto my-2 px-4 rounded-lg mr-2;
+}
+
+.btn-delete {
+    @apply rounded-2xl border border-red-500 text-red-500 hover:bg-red-500 hover:text-white text-sm text-center w-auto my-2 py-2 px-5 mr-2;
+}
+
+.btn-edit {
+    @apply rounded-2xl border border-blue-500 text-blue-500 hover:bg-blue-500 hover:text-white text-sm text-center w-auto my-2 py-2 px-5 mr-2;
+}
+
+.btn-submit {
+    @apply rounded-2xl border border-green-500 text-white bg-green-500 hover:bg-transparent hover:text-green-500 w-auto my-2 py-2 px-5 mr-2 ;
+}
+
+.link {
+    @apply border p-2 px-5 rounded-lg  my-2 inline-block;
 }

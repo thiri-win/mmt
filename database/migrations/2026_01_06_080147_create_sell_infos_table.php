@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->foreignId("order_id")->constrained();
             $table->foreignId("item_id")->constrained();
-            $table->decimal("sell_qty", 15,2);
-            $table->integer("sell_price");
+            $table->decimal("sell_qty", 15,2)->nullable();
+            $table->integer("sell_price")->nullable();
             $table->timestamps();
         });
     }

@@ -34,7 +34,12 @@ import { toUrl, urlIsActive } from '@/lib/utils';
 import { dashboard } from '@/routes';
 import type { BreadcrumbItem, NavItem } from '@/types';
 import { InertiaLinkProps, Link, usePage } from '@inertiajs/vue3';
-import { BookOpen, Folder, LayoutGrid, Menu, PlusCircleIcon, Search } from 'lucide-vue-next';
+import {
+    BookOpen,
+    DollarSignIcon,
+    LayoutGrid,
+    Menu,
+} from 'lucide-vue-next';
 import { computed } from 'vue';
 
 interface Props {
@@ -72,23 +77,23 @@ const mainNavItems: NavItem[] = [
         icon: BookOpen,
     },
     {
-        title: 'စာရင်းအသစ်ထည့်ရန်',
-        href: '/orders/create',
-        icon: PlusCircleIcon,
+        title: 'အခြားစာရင်းများ',
+        href: '/expenses',
+        icon: DollarSignIcon,
     },
 ];
 
 const rightNavItems: NavItem[] = [
-    {
-        title: 'Repository',
-        href: 'https://github.com/laravel/vue-starter-kit',
-        icon: Folder,
-    },
-    {
-        title: 'Documentation',
-        href: 'https://laravel.com/docs/starter-kits#vue',
-        icon: BookOpen,
-    },
+    // {
+    //     title: 'Repository',
+    //     href: 'https://github.com/laravel/vue-starter-kit',
+    //     icon: Folder,
+    // },
+    // {
+    //     title: 'Documentation',
+    //     href: 'https://laravel.com/docs/starter-kits#vue',
+    //     icon: BookOpen,
+    // },
 ];
 </script>
 
@@ -199,15 +204,15 @@ const rightNavItems: NavItem[] = [
 
                 <div class="ml-auto flex items-center space-x-2">
                     <div class="relative flex items-center space-x-1">
-                        <Button
-                            variant="ghost"
-                            size="icon"
-                            class="group h-9 w-9 cursor-pointer"
-                        >
-                            <Search
-                                class="size-5 opacity-80 group-hover:opacity-100"
-                            />
-                        </Button>
+                        <!--                        <Button-->
+                        <!--                            variant="ghost"-->
+                        <!--                            size="icon"-->
+                        <!--                            class="group h-9 w-9 cursor-pointer"-->
+                        <!--                        >-->
+                        <!--                            <Search-->
+                        <!--                                class="size-5 opacity-80 group-hover:opacity-100"-->
+                        <!--                            />-->
+                        <!--                        </Button>-->
 
                         <div class="hidden space-x-1 lg:flex">
                             <template
