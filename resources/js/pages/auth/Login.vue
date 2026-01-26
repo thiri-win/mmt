@@ -32,7 +32,6 @@ defineProps<{
         >
             {{ status }}
         </div>
-
         <Form
             v-bind="store.form()"
             :reset-on-success="['password']"

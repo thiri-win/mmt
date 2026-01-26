@@ -5,7 +5,7 @@ import TomSelect from 'tom-select';
 import 'tom-select/dist/css/tom-select.css';
 import { computed, nextTick, onMounted } from 'vue';
 
-const props = defineProps({
+defineProps({
     items: {
         type: Array,
         default: () => [],
@@ -101,13 +101,10 @@ const removeSellItem = (item) => {
 };
 
 form.grand_total = computed(() => {
-    return (
-        (form.sellItems.reduce((total, sellItem) => {
+    const total = (form.sellItems.reduce((total, sellItem) => {
             return total + sellItem.sell_qty * sellItem.sell_price;
-        }, 0) +
-            form.car_rent_cost) *
-        form.count
-    );
+        }, 0) + Number(form.car_rent_cost)) * Number(form.count)
+    return parseFloat(total.toFixed());
 });
 
 const submit = () => {
@@ -229,7 +226,7 @@ onMounted(() => {
                         </td>
                         <td>
                             <span>{{
-                                buyItem.buy_qty * buyItem.buy_price
+                                (buyItem.buy_qty * buyItem.buy_price).toFixed()
                             }}</span>
                         </td>
                         <td>
@@ -348,10 +345,7 @@ onMounted(() => {
                                         />
                                     </td>
                                     <td>
-                                        <span>{{
-                                            sellItem.sell_qty *
-                                            sellItem.sell_price
-                                        }}</span>
+                                        <span>{{ (sellItem.sell_qty * sellItem.sell_price).toFixed() }}</span>
                                     </td>
                                     <td>
                                         <button

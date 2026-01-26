@@ -39,6 +39,7 @@ import {
     DollarSignIcon,
     LayoutGrid,
     Menu,
+    PlusIcon,
 } from 'lucide-vue-next';
 import { computed } from 'vue';
 
@@ -75,6 +76,11 @@ const mainNavItems: NavItem[] = [
         title: 'စာရင်းများကြည့်ရန်',
         href: '/orders',
         icon: BookOpen,
+    },
+    {
+        title: 'စာရင်း အသစ်ထည့်ရန်',
+        href: '/orders/create',
+        icon: PlusIcon,
     },
     {
         title: 'အခြားစာရင်းများ',

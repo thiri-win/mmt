@@ -175,7 +175,7 @@ h1 {
 }
 
 label {
-    @apply inline-block p-1;
+    @apply inline-block p-1 mb-2;
 }
 
 input::placeholder,
@@ -193,7 +193,7 @@ table label {
 
 input,
 table span {
-    @apply inline-block w-full rounded border p-1;
+    @apply inline-block w-full rounded border p-1 mb-2;
 }
 
 table a {
