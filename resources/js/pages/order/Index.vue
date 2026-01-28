@@ -71,7 +71,9 @@ const confirmDelete = (e) => {
     <AppLayout>
         <Head title="စာရင်းများကြည့်ရန်"></Head>
         <div class="container mx-auto p-5">
-            <Link :href="route('orders.create')" class="link">+ စာရင်းအသစ်ရေးရန်</Link>
+            <Link :href="route('orders.create')" class="link"
+                >+ စာရင်းအသစ်ရေးရန်</Link
+            >
             <div class="mb-4 flex flex-wrap items-end gap-3">
                 <div>
                     <label class="mb-1 block text-sm font-medium" for="from"
@@ -165,14 +167,13 @@ const confirmDelete = (e) => {
                         <th>ကားခ</th>
                         <th>ခေါက်ရေ</th>
                         <th>စုစုပေါင်း</th>
-                        <th>note</th>
                         <th></th>
                     </tr>
                 </thead>
                 <tbody>
                     <template v-for="group in groups" :key="group.date">
                         <tr class="bg-gray-100/60 dark:bg-gray-100/10">
-                            <td colspan="14" class="font-semibold">
+                            <td colspan="13" class="font-semibold">
                                 {{ group.date }}
                             </td>
                         </tr>
@@ -283,7 +284,6 @@ const confirmDelete = (e) => {
                             <td>{{ order.car_rent_cost.toLocaleString() }}</td>
                             <td>{{ order.count }}</td>
                             <td>{{ order.grand_total.toLocaleString() }}</td>
-                            <td>{{ order.note }}</td>
                             <td class="text-center">
                                 <Link
                                     :href="`/orders/${order.id}/edit`"

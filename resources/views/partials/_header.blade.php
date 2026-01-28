@@ -11,13 +11,14 @@
         margin: 0;
         box-sizing: border-box;
         font-family: 'padauk';
-        font-size: 12px;
+        font-size: 14px;
         line-height: 1.7;
     }
 
     header {
         width: 100%;
         padding: 0px 25px;
+        padding-top: 25px;
     }
 
     .heading {
@@ -26,24 +27,28 @@
     }
 
     .heading h1 {
+        font-size: 18px;
+    }
+
+    .heading h2 {
         font-size: 16px;
     }
-    .heading h2 {
-        font-size: 14px;
-    }
+
     .heading p {
-        font-size: 13px;
+        font-size: 15px;
     }
 
     table {
         width: 100%;
         border-collapse: collapse;
     }
+
     td {
         /* border: 1px solid green; */
         width: 10%;
         padding: 3px;
     }
+
     td:nth-child(2n) {
         width: 40%;
         border-bottom: 1px solid #000;
@@ -68,7 +73,7 @@
                 <label for="date">နေ့စွဲ</label>
             </td>
             <td>
-                <span></span>
+                <span>{{$date->format('M-Y')}}</span>
             </td>
         </tr>
         <tr>

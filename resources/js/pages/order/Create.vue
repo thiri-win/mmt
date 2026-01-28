@@ -32,16 +32,16 @@ const form = useForm({
             id: 1,
             dealer_id: '',
             item_id: '',
-            buy_qty: '',
-            buy_price: '',
+            buy_qty: 0,
+            buy_price: 0,
         },
     ],
     sellItems: [
         {
             id: 1,
             item_id: '',
-            sell_qty: '',
-            sell_price: '',
+            sell_qty: 0,
+            sell_price: 0,
         },
     ],
 });

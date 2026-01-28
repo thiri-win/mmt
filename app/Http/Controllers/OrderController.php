@@ -256,10 +256,9 @@ class OrderController extends Controller
         $customer = Customer::find($request->customer);
 
         return Pdf::view('orders.customer-print', ['groups' => $groups->get()])
-            ->format('a5')
-            ->headerView('partials._header', ['customer' => $customer])
-            ->footerView('partials._footer')
-            ->margins(45, 5, 30, 5)
+            ->paperSize(177,217,'mm')
+            ->headerView('partials._header', ['customer' => $customer, 'date' => $groups->first()->date])
+            ->margins(55, 5, 0, 5)
             ->name('orders.pdf');
     }
 }

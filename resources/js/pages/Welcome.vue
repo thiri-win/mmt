@@ -59,7 +59,7 @@ withDefaults(
                 <h1>ကိုမောင်မောင်သန်းနှင့် ညီအစ်ကိုများ</h1>
                 <p class="mb-2">အုတ် ၊သဲ၊ ကျောက်၊ ဘိလပ်မြေ ရောင်းဝယ်သယ်ယူပို့ဆောင်ရေး</p>
                 <p class="flex items-center"><Phone class="mr-2"/>095145721</p>
-            </main>s
+            </main>
         </div>
         <div class="hidden h-14.5 lg:block"></div>
     </div>
