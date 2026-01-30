@@ -69,8 +69,8 @@ const addBuyItem = async () => {
         id: newId,
         dealer_id: '',
         item_id: '',
-        buy_qty: '',
-        buy_price: '',
+        buy_qty: 0,
+        buy_price: 0,
     });
     await nextTick();
     initTomSelect();
@@ -85,8 +85,8 @@ const addSellItem = async () => {
     form.sellItems.push({
         id: newId,
         item_id: '',
-        sell_qty: '',
-        sell_price: '',
+        sell_qty: 0,
+        sell_price: 0,
     });
     await nextTick();
     initTomSelect();
