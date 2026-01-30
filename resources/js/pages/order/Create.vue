@@ -112,7 +112,12 @@ form.grand_total = computed(() => {
 
 const submit = () => {
     form.post('/orders', {
-        onSuccess: () => form.reset(),
+        onSuccess: () => {
+            form.reset();
+            form.buyItems = [{ id: 1, dealer_id: '', item_id: '', buy_qty: 0, buy_price: 0 }];
+            form.sellItems = [{ id: 1, item_id: '', sell_qty: 0, sell_price: 0 }];
+        }
+
     });
 };
 
