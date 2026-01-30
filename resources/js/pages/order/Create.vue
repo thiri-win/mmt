@@ -101,14 +101,19 @@ const removeSellItem = (item) => {
 };
 
 form.grand_total = computed(() => {
-    const total = (form.sellItems.reduce((total, sellItem) => {
+    const total =
+        (form.sellItems.reduce((total, sellItem) => {
             return total + sellItem.sell_qty * sellItem.sell_price;
-        }, 0) + Number(form.car_rent_cost)) * Number(form.count)
+        }, 0) +
+            Number(form.car_rent_cost)) *
+        Number(form.count);
     return parseFloat(total.toFixed());
 });
 
 const submit = () => {
-    form.post('/orders');
+    form.post('/orders', {
+        onSuccess: () => form.reset(),
+    });
 };
 
 onMounted(() => {
@@ -345,7 +350,12 @@ onMounted(() => {
                                         />
                                     </td>
                                     <td>
-                                        <span>{{ (sellItem.sell_qty * sellItem.sell_price).toFixed() }}</span>
+                                        <span>{{
+                                            (
+                                                sellItem.sell_qty *
+                                                sellItem.sell_price
+                                            ).toFixed()
+                                        }}</span>
                                     </td>
                                     <td>
                                         <button
@@ -432,7 +442,9 @@ onMounted(() => {
                     </tr>
                     <tr>
                         <td>
-                            <button type="submit" class="btn-submit">Submit</button>
+                            <button type="submit" class="btn-submit">
+                                Submit
+                            </button>
                         </td>
                     </tr>
                 </table>
