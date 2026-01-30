@@ -104,7 +104,7 @@ class OrderController extends Controller
         $order->buyinfos()->createMany($validatedData['buyItems']);
         $order->sellinfos()->createMany($validatedData['sellItems']);
 
-        return redirect()->route('orders.create')->with('success', 'Order created.');
+        return redirect()->route('orders.index')->with('success', 'Order created.');
     }
 
     /**
