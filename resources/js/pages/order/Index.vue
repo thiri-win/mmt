@@ -1,6 +1,7 @@
 <script setup>
 import AppLayout from '@/layouts/AppLayout.vue';
 import { Head, Link, useForm } from '@inertiajs/vue3';
+import { Pencil, Trash } from 'lucide-vue-next';
 import { computed } from 'vue';
 import { route } from 'ziggy-js';
 const props = defineProps({
@@ -70,7 +71,7 @@ const confirmDelete = (e) => {
 <template>
     <AppLayout>
         <Head title="စာရင်းများကြည့်ရန်"></Head>
-        <div class="container mx-auto p-5">
+        <div class="container mx-auto">
             <Link :href="route('orders.create')" class="link"
                 >+ စာရင်းအသစ်ရေးရန်</Link
             >
@@ -204,7 +205,7 @@ const confirmDelete = (e) => {
                                     </span>
                                 </div>
                             </td>
-                            <td>
+                            <td class="text-right">
                                 <div
                                     v-for="(info, index) in order.buyinfos"
                                     :key="info.id"
@@ -217,7 +218,7 @@ const confirmDelete = (e) => {
                                     </span>
                                 </div>
                             </td>
-                            <td>
+                            <td class="text-right">
                                 <div
                                     v-for="(info, index) in order.buyinfos"
                                     :key="info.id"
@@ -249,7 +250,7 @@ const confirmDelete = (e) => {
                                     </span>
                                 </div>
                             </td>
-                            <td>
+                            <td class="text-right">
                                 <div
                                     v-for="(info, index) in order.sellinfos"
                                     :key="info.id"
@@ -264,7 +265,7 @@ const confirmDelete = (e) => {
                                     </span>
                                 </div>
                             </td>
-                            <td>
+                            <td class="text-right">
                                 <div
                                     v-for="(info, index) in order.sellinfos"
                                     :key="info.id"
@@ -281,22 +282,26 @@ const confirmDelete = (e) => {
                                     </span>
                                 </div>
                             </td>
-                            <td>{{ order.car_rent_cost.toLocaleString() }}</td>
-                            <td>{{ order.count }}</td>
-                            <td>{{ order.grand_total.toLocaleString() }}</td>
-                            <td class="text-center">
+                            <td class="text-right">
+                                {{ order.car_rent_cost.toLocaleString() }}
+                            </td>
+                            <td class="text-right">{{ order.count }}</td>
+                            <td class="text-right">
+                                {{ order.grand_total.toLocaleString() }}
+                            </td>
+                            <td class="flex items-center">
                                 <Link
                                     :href="`/orders/${order.id}/edit`"
-                                    class="btn-edit"
-                                    >ပြင်ရန်</Link
-                                >
+                                    class="btn-edit !m-1 cursor-pointer !rounded-lg !p-1"
+                                    ><Pencil></Pencil
+                                ></Link>
                                 <Link
                                     :href="`/orders/${order.id}`"
                                     method="delete"
-                                    class="btn-delete"
+                                    class="btn-delete !m-1 cursor-pointer !rounded-lg !p-1"
                                     :onBefore="() => confirmDelete($event)"
-                                    >ဖျက်ရန်</Link
-                                >
+                                    ><Trash></Trash
+                                ></Link>
                             </td>
                         </tr>
                     </template>

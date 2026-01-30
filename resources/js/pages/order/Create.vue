@@ -21,7 +21,7 @@ defineProps({
 });
 
 const form = useForm({
-    date: new Date().toISOString().substring(0, 10),
+    date: '',
     location: '',
     car_rent_cost: '',
     grand_total: '',
@@ -133,7 +133,7 @@ onMounted(() => {
             <form @submit.prevent="submit">
                 <table>
                     <tr>
-                        <td colspan="6">
+                        <td>
                             <input
                                 type="date"
                                 id="date"
@@ -151,7 +151,6 @@ onMounted(() => {
                         <td><label>အမျိုးအစား</label></td>
                         <td><label>ပမာဏ</label></td>
                         <td><label>နှုန်း</label></td>
-                        <td><label>စုစုပေါင်း</label></td>
                         <td></td>
                     </tr>
                     <tr
@@ -234,11 +233,11 @@ onMounted(() => {
                                 "
                             />
                         </td>
-                        <td>
-                            <span>{{
-                                (buyItem.buy_qty * buyItem.buy_price).toFixed()
-                            }}</span>
-                        </td>
+<!--                        <td class="text-center">-->
+<!--                            <span class="!border-0">{{-->
+<!--                                (buyItem.buy_qty * buyItem.buy_price).toFixed()-->
+<!--                            }}</span>-->
+<!--                        </td>-->
                         <td>
                             <button
                                 type="button"
@@ -255,18 +254,16 @@ onMounted(() => {
                                 + ADD
                             </button>
                         </td>
-                        <td colspan="5"></td>
                     </tr>
                     <tr>
                         <td><label>မှာယူသူ</label></td>
                         <td><label>အမျိုးအစား</label></td>
                         <td><label>ပမာဏ</label></td>
                         <td><label>နှုန်း</label></td>
-                        <td><label>စုစုပေါင်း</label></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td class="align-top">
+                        <td>
                             <select
                                 id="customer_id"
                                 placeholder="မှာယူသူ"
@@ -289,7 +286,7 @@ onMounted(() => {
                                 </option>
                             </select>
                         </td>
-                        <td colspan="5">
+                        <td colspan="4">
                             <table>
                                 <tr
                                     v-for="(sellItem, index) in form.sellItems"
@@ -354,14 +351,14 @@ onMounted(() => {
                                             "
                                         />
                                     </td>
-                                    <td>
-                                        <span>{{
-                                            (
-                                                sellItem.sell_qty *
-                                                sellItem.sell_price
-                                            ).toFixed()
-                                        }}</span>
-                                    </td>
+<!--                                    <td>-->
+<!--                                        <span class="!border-0">{{-->
+<!--                                            (-->
+<!--                                                sellItem.sell_qty *-->
+<!--                                                sellItem.sell_price-->
+<!--                                            ).toFixed()-->
+<!--                                        }}</span>-->
+<!--                                    </td>-->
                                     <td>
                                         <button
                                             type="button"
@@ -381,22 +378,21 @@ onMounted(() => {
                                 + ADD
                             </button>
                         </td>
-                        <td colspan="5"></td>
                     </tr>
                     <tr>
-                        <td colspan="2"><label>ပို့ဆောင်ရန်လိပ်စာ</label></td>
+                        <td><label>ပို့ဆောင်ရန်လိပ်စာ</label></td>
                         <td><label>ကားခ</label></td>
                         <td><label>ခေါက်ရေ</label></td>
                         <td><label>စုစုပေါင်း</label></td>
                         <td></td>
                     </tr>
                     <tr>
-                        <td colspan="2">
+                        <td>
                             <input
                                 type="text"
                                 id="location"
                                 name="location"
-                                placeholder="ပို့ဆောင်ရန်လိပ်စာ"
+                                placeholder="လိပ်စာ"
                                 v-model="form.location"
                                 :class="
                                     form.errors.location ? 'border-red-300' : ''

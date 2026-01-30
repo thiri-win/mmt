@@ -104,7 +104,7 @@ const rightNavItems: NavItem[] = [
 </script>
 
 <template>
-    <div>
+    <div class="fixed top-0 left-0 right-0 bg-white dark:bg-black z-50">
         <div class="border-b border-sidebar-border/80">
             <div class="mx-auto flex h-16 items-center px-4 md:max-w-7xl">
                 <!-- Mobile Menu -->

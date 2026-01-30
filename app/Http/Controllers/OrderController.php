@@ -104,7 +104,7 @@ class OrderController extends Controller
         $order->buyinfos()->createMany($validatedData['buyItems']);
         $order->sellinfos()->createMany($validatedData['sellItems']);
 
-        return redirect()->route('orders.index')->with('success', 'Order created.');
+        return redirect()->route('orders.index')->with('success', 'စာရင်းအသစ်ဖြည့်ပြီးပါပြီ');
     }
 
     /**
@@ -185,7 +185,7 @@ class OrderController extends Controller
         $incomingBuyItems = collect($validatedData['buyItems'])
             ->pluck('id')
             ->filter(fn($id) => is_numeric($id) && $id > 0)
-            ->map(fn($id) => (int) $id)
+            ->map(fn($id) => (int)$id)
             ->all();;
         $order->buyinfos()->whereNotIn('id', $incomingBuyItems)->delete();
         foreach ($validatedData['buyItems'] as $item) {
@@ -199,7 +199,7 @@ class OrderController extends Controller
         $incomingSellItems = collect($validatedData['sellItems'])
             ->pluck('id')
             ->filter(fn($id) => is_numeric($id) && $id > 0)
-            ->map(fn($id) => (int) $id)
+            ->map(fn($id) => (int)$id)
             ->all();;
         $order->sellinfos()->whereNotIn('id', $incomingSellItems)->delete();
         foreach ($validatedData['sellItems'] as $item) {
@@ -210,7 +210,9 @@ class OrderController extends Controller
             }
         }
 
-        return redirect()->route('orders.index');
+        return redirect()
+            ->route('orders.index')
+            ->with('success', 'စာရင်းပြင်ဆင်လို့ပြီးပါပြီ');
     }
 
     /**
@@ -256,7 +258,7 @@ class OrderController extends Controller
         $customer = Customer::find($request->customer);
 
         return Pdf::view('orders.customer-print', ['groups' => $groups->get()])
-            ->paperSize(177,217,'mm')
+            ->paperSize(177, 217, 'mm')
             ->headerView('partials._header', ['customer' => $customer, 'date' => $groups->first()->date])
             ->margins(55, 5, 0, 5)
             ->name('orders.pdf');

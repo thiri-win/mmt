@@ -80,11 +80,14 @@
                     <td>{{ $order->date->format('d-m-y') }}</td>
                     <td>{{ $order->location }}</td>
                     <td>
-                        @foreach ($order->sellinfos as $index => $info)
-                            {{ $info->item?->name }}@if ($index < count($order->sellinfos) - 1)
-                                +
-                            @endif
-                        @endforeach
+                        @if($order->customer->id !== 13)
+                            @foreach ($order->sellinfos as $index => $info)
+                                {{ $info->item?->name }}
+                                @if ($index < count($order->sellinfos) - 1)
+                                    +
+                                @endif
+                            @endforeach
+                        @endif
                     </td>
                     <td>{{ $order->count }}</td>
                     <td style="text-align: right">{{ number_format($order->grand_total) }}</td>

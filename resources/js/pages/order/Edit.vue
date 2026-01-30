@@ -94,7 +94,9 @@ form.grand_total = computed(() => {
 })
 
 const submit = () => {
-    form.put(`/orders/${props.order.id}`, props.order.id)
+    form.put(`/orders/${props.order.id}`, props.order.id, {
+        preserveScroll: true,
+    })
 }
 
 onMounted(() => {
@@ -226,7 +228,7 @@ onMounted(() => {
                     </tr>
                     <tr>
                         <td>
-                            <button type="submit">Update</button>
+                            <button type="submit" class="btn btn-edit">Update</button>
                         </td>
                     </tr>
                 </table>
