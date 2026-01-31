@@ -157,7 +157,7 @@ const confirmDelete = (e) => {
                 <thead>
                     <tr>
                         <th>ဒိုင်</th>
-                        <th>အမျိုးအစား</th>
+                        <!--                        <th>အမျိုးအစား</th>-->
                         <th>ပမာဏ</th>
                         <th>နှုန်း</th>
                         <th>မှာယူသူ</th>
@@ -174,7 +174,7 @@ const confirmDelete = (e) => {
                 <tbody>
                     <template v-for="group in groups" :key="group.date">
                         <tr class="bg-gray-100/60 dark:bg-gray-100/10">
-                            <td colspan="13" class="font-semibold">
+                            <td colspan="12" class="font-semibold">
                                 {{ group.date }}
                             </td>
                         </tr>
@@ -192,19 +192,19 @@ const confirmDelete = (e) => {
                                     </span>
                                 </div>
                             </td>
-                            <td>
-                                <div
-                                    v-for="(info, index) in order.buyinfos"
-                                    :key="info.id"
-                                >
-                                    {{ info.item?.name }}
-                                    <span
-                                        v-if="index < order.buyinfos.length - 1"
-                                    >
-                                        +
-                                    </span>
-                                </div>
-                            </td>
+                            <!--                            <td>-->
+                            <!--                                <div-->
+                            <!--                                    v-for="(info, index) in order.buyinfos"-->
+                            <!--                                    :key="info.id"-->
+                            <!--                                >-->
+                            <!--                                    {{ info.item?.name }}-->
+                            <!--                                    <span-->
+                            <!--                                        v-if="index < order.buyinfos.length - 1"-->
+                            <!--                                    >-->
+                            <!--                                        +-->
+                            <!--                                    </span>-->
+                            <!--                                </div>-->
+                            <!--                            </td>-->
                             <td class="text-right">
                                 <div
                                     v-for="(info, index) in order.buyinfos"

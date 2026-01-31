@@ -24,6 +24,7 @@ const form = useForm({
     date: '',
     location: '',
     car_rent_cost: '',
+    extra_cost: 0,
     grand_total: '',
     customer_id: '',
     count: 1,
@@ -105,7 +106,8 @@ form.grand_total = computed(() => {
         (form.sellItems.reduce((total, sellItem) => {
             return total + sellItem.sell_qty * sellItem.sell_price;
         }, 0) +
-            Number(form.car_rent_cost)) *
+            Number(form.car_rent_cost) +
+            Number(form.extra_cost)) *
         Number(form.count);
     return parseFloat(total.toFixed());
 });
@@ -114,10 +116,7 @@ const submit = () => {
     form.post('/orders', {
         onSuccess: () => {
             form.reset();
-            form.buyItems = [{ id: 1, dealer_id: '', item_id: '', buy_qty: 0, buy_price: 0 }];
-            form.sellItems = [{ id: 1, item_id: '', sell_qty: 0, sell_price: 0 }];
-        }
-
+        },
     });
 };
 
@@ -233,11 +232,11 @@ onMounted(() => {
                                 "
                             />
                         </td>
-<!--                        <td class="text-center">-->
-<!--                            <span class="!border-0">{{-->
-<!--                                (buyItem.buy_qty * buyItem.buy_price).toFixed()-->
-<!--                            }}</span>-->
-<!--                        </td>-->
+                        <!--                        <td class="text-center">-->
+                        <!--                            <span class="!border-0">{{-->
+                        <!--                                (buyItem.buy_qty * buyItem.buy_price).toFixed()-->
+                        <!--                            }}</span>-->
+                        <!--                        </td>-->
                         <td>
                             <button
                                 type="button"
@@ -351,14 +350,14 @@ onMounted(() => {
                                             "
                                         />
                                     </td>
-<!--                                    <td>-->
-<!--                                        <span class="!border-0">{{-->
-<!--                                            (-->
-<!--                                                sellItem.sell_qty *-->
-<!--                                                sellItem.sell_price-->
-<!--                                            ).toFixed()-->
-<!--                                        }}</span>-->
-<!--                                    </td>-->
+                                    <!--                                    <td>-->
+                                    <!--                                        <span class="!border-0">{{-->
+                                    <!--                                            (-->
+                                    <!--                                                sellItem.sell_qty *-->
+                                    <!--                                                sellItem.sell_price-->
+                                    <!--                                            ).toFixed()-->
+                                    <!--                                        }}</span>-->
+                                    <!--                                    </td>-->
                                     <td>
                                         <button
                                             type="button"
@@ -382,9 +381,9 @@ onMounted(() => {
                     <tr>
                         <td><label>ပို့ဆောင်ရန်လိပ်စာ</label></td>
                         <td><label>ကားခ</label></td>
+                        <td><label>ပက်/ထမ်း</label></td>
                         <td><label>ခေါက်ရေ</label></td>
                         <td><label>စုစုပေါင်း</label></td>
-                        <td></td>
                     </tr>
                     <tr>
                         <td>
@@ -408,6 +407,20 @@ onMounted(() => {
                                 v-model="form.car_rent_cost"
                                 :class="
                                     form.errors.car_rent_cost
+                                        ? 'border-red-300'
+                                        : ''
+                                "
+                            />
+                        </td>
+                        <td>
+                            <input
+                                type="number"
+                                name="extra_cost"
+                                id="extra_cost"
+                                placeholder="ထမ်း/ချ"
+                                v-model="form.extra_cost"
+                                :class="
+                                    form.errors.extra_cost
                                         ? 'border-red-300'
                                         : ''
                                 "
