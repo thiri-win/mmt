@@ -166,6 +166,7 @@ const confirmDelete = (e) => {
                         <th>ပမာဏ</th>
                         <th>နှုန်း</th>
                         <th>ကားခ</th>
+                        <th>ပက်/ထမ်း</th>
                         <th>ခေါက်ရေ</th>
                         <th>စုစုပေါင်း</th>
                         <th></th>
@@ -284,6 +285,9 @@ const confirmDelete = (e) => {
                             </td>
                             <td class="text-right">
                                 {{ order.car_rent_cost.toLocaleString() }}
+                            </td>
+                            <td class="text-right">
+                                {{ order.extra_cost.toLocaleString() }}
                             </td>
                             <td class="text-right">{{ order.count }}</td>
                             <td class="text-right">
