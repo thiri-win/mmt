@@ -1,13 +1,13 @@
--- MySQL dump 10.13  Distrib 8.0.45, for Win64 (x86_64)
+-- MySQL dump 10.13  Distrib 9.0.1, for macos14 (x86_64)
 --
--- Host: 127.0.0.1    Database: mmt
+-- Host: localhost    Database: mmt
 -- ------------------------------------------------------
--- Server version	8.0.45
+-- Server version	9.0.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
 /*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!50503 SET NAMES utf8 */;
+/*!50503 SET NAMES utf8mb4 */;
 /*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
 /*!40103 SET TIME_ZONE='+00:00' */;
 /*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
@@ -38,7 +38,7 @@ CREATE TABLE `buy_infos` (
   CONSTRAINT `buy_infos_dealer_id_foreign` FOREIGN KEY (`dealer_id`) REFERENCES `dealers` (`id`),
   CONSTRAINT `buy_infos_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`),
   CONSTRAINT `buy_infos_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -47,7 +47,7 @@ CREATE TABLE `buy_infos` (
 
 LOCK TABLES `buy_infos` WRITE;
 /*!40000 ALTER TABLE `buy_infos` DISABLE KEYS */;
-INSERT INTO `buy_infos` VALUES (1,1,1,3,0.90,160000,'2026-01-26 06:19:01','2026-01-26 06:19:01'),(2,2,3,2,90.00,260,'2026-01-26 06:23:25','2026-01-26 06:23:25'),(3,3,1,4,80.00,1600,'2026-01-26 06:27:34','2026-01-26 06:27:34'),(4,4,1,3,0.00,0,'2026-01-26 06:52:21','2026-01-26 06:52:21'),(5,5,3,2,0.00,0,'2026-01-26 07:05:29','2026-01-26 07:06:19'),(6,6,1,3,0.00,0,'2026-01-26 07:09:33','2026-01-26 07:09:33'),(7,7,4,2,1.00,26000,'2026-01-26 07:11:52','2026-01-26 21:02:36'),(8,8,4,2,0.00,0,'2026-01-26 07:15:56','2026-01-26 07:15:56'),(9,9,1,3,0.00,0,'2026-01-26 07:15:56','2026-01-26 07:20:22'),(10,10,2,2,0.00,0,'2026-01-26 07:23:43','2026-01-26 07:23:43'),(11,11,3,2,0.00,0,'2026-01-26 07:28:44','2026-01-26 07:28:44'),(12,12,2,2,0.00,0,'2026-01-26 21:06:57','2026-01-26 21:06:57'),(13,13,4,2,1.25,24000,'2026-01-26 21:08:19','2026-01-26 21:20:42'),(14,14,2,2,0.50,24000,'2026-01-26 21:12:01','2026-01-26 21:12:01'),(15,14,1,3,0.20,125000,'2026-01-26 21:12:01','2026-01-26 21:12:01'),(16,15,1,3,1.25,125000,'2026-01-26 21:14:35','2026-01-26 21:14:35'),(17,16,3,2,0.00,0,'2026-01-26 21:17:38','2026-01-26 21:17:38'),(18,17,3,2,0.00,0,'2026-01-26 21:19:26','2026-01-26 21:19:26');
+INSERT INTO `buy_infos` VALUES (1,1,1,3,0.90,160000,'2026-01-26 06:19:01','2026-01-26 06:19:01'),(2,2,3,2,90.00,260,'2026-01-26 06:23:25','2026-01-26 06:23:25'),(3,3,1,4,80.00,1600,'2026-01-26 06:27:34','2026-01-26 06:27:34'),(4,4,1,3,0.00,0,'2026-01-26 06:52:21','2026-01-26 06:52:21'),(5,5,3,2,0.00,0,'2026-01-26 07:05:29','2026-01-26 07:06:19'),(6,6,1,3,0.00,0,'2026-01-26 07:09:33','2026-01-26 07:09:33'),(7,7,4,2,1.00,26000,'2026-01-26 07:11:52','2026-01-26 21:02:36'),(8,8,4,2,0.00,0,'2026-01-26 07:15:56','2026-01-26 07:15:56'),(9,9,1,3,0.00,0,'2026-01-26 07:15:56','2026-01-26 07:20:22'),(10,10,2,2,0.00,0,'2026-01-26 07:23:43','2026-01-26 07:23:43'),(11,11,3,2,0.00,0,'2026-01-26 07:28:44','2026-01-26 07:28:44'),(12,12,2,2,0.00,0,'2026-01-26 21:06:57','2026-01-26 21:06:57'),(13,13,4,2,1.25,24000,'2026-01-26 21:08:19','2026-01-26 21:20:42'),(14,14,2,2,0.50,24000,'2026-01-26 21:12:01','2026-01-26 21:12:01'),(15,14,1,3,0.20,125000,'2026-01-26 21:12:01','2026-01-26 21:12:01'),(16,15,1,3,1.25,125000,'2026-01-26 21:14:35','2026-01-26 21:14:35'),(17,16,3,2,0.00,0,'2026-01-26 21:17:38','2026-01-26 21:17:38'),(18,17,3,2,0.00,0,'2026-01-26 21:19:26','2026-01-26 21:19:26'),(19,18,2,2,0.00,0,'2026-01-29 21:27:26','2026-01-29 21:27:26'),(20,19,1,3,0.00,0,'2026-01-29 21:28:32','2026-01-29 21:28:32'),(21,20,3,2,0.00,0,'2026-01-29 21:29:55','2026-01-29 21:29:55'),(22,21,3,2,0.80,24000,'2026-01-29 21:31:18','2026-01-29 21:31:18'),(23,22,1,3,0.00,0,'2026-01-29 21:32:08','2026-01-29 21:32:08'),(24,23,6,2,0.00,0,'2026-01-29 21:33:53','2026-01-29 21:33:53'),(26,25,4,2,0.00,0,'2026-01-29 21:41:11','2026-01-29 21:41:11'),(27,26,2,2,0.00,0,'2026-01-29 21:42:24','2026-01-29 21:42:24'),(28,27,2,2,0.00,0,'2026-01-29 21:44:19','2026-01-29 21:44:19'),(29,27,1,3,0.00,0,'2026-01-29 21:44:19','2026-01-29 21:44:19'),(30,28,2,2,0.00,0,'2026-01-29 21:50:37','2026-01-29 21:50:37'),(33,31,2,2,0.00,0,'2026-01-29 22:34:43','2026-01-29 22:34:43'),(34,32,1,3,0.00,0,'2026-01-29 22:37:44','2026-01-29 22:37:44'),(35,33,2,2,0.00,0,'2026-01-29 22:40:53','2026-01-29 22:40:53'),(36,34,2,2,0.00,0,'2026-01-29 22:42:17','2026-01-29 22:42:17'),(37,35,2,2,0.00,0,'2026-01-29 22:44:27','2026-01-29 22:44:27'),(38,35,1,3,0.00,0,'2026-01-29 22:44:27','2026-01-29 22:44:27'),(39,36,2,2,0.00,0,'2026-01-29 22:45:03','2026-01-29 22:45:03'),(40,37,2,2,0.00,0,'2026-01-29 22:46:43','2026-01-29 22:46:43'),(41,37,1,3,0.00,0,'2026-01-29 22:46:43','2026-01-29 22:46:43'),(43,39,2,2,0.00,0,'2026-01-30 07:03:27','2026-01-30 07:03:27'),(44,40,2,2,1.25,24000,'2026-01-30 07:09:20','2026-01-30 07:09:20'),(45,41,1,3,0.00,0,'2026-01-30 07:12:26','2026-01-30 07:12:26'),(46,42,2,2,0.75,24000,'2026-01-30 07:19:07','2026-01-30 07:19:07'),(47,42,1,3,0.50,120000,'2026-01-30 07:19:07','2026-01-30 07:19:07'),(48,43,10,2,0.00,0,'2026-01-30 07:44:01','2026-01-30 07:44:01'),(49,43,1,3,0.00,0,'2026-01-30 07:44:01','2026-01-30 07:44:01'),(50,44,10,2,0.00,0,'2026-01-30 07:50:17','2026-01-30 07:50:17'),(51,45,6,2,0.00,0,'2026-01-30 07:52:46','2026-01-30 07:52:46'),(52,46,2,2,0.00,0,'2026-01-30 07:53:55','2026-01-30 07:53:55'),(53,47,10,2,0.00,0,'2026-01-30 07:55:18','2026-01-30 07:55:18'),(54,48,11,2,0.00,0,'2026-01-30 07:57:50','2026-01-30 07:57:50'),(55,49,2,2,0.00,0,'2026-01-30 07:59:38','2026-01-30 07:59:38'),(56,50,1,2,0.00,0,'2026-01-30 08:00:59','2026-01-30 08:00:59'),(57,51,1,2,0.00,0,'2026-01-30 08:01:50','2026-01-30 08:01:50'),(58,52,6,2,0.00,0,'2026-01-30 08:02:49','2026-01-30 08:02:49'),(59,53,6,2,0.00,0,'2026-01-30 08:04:06','2026-01-30 08:04:06'),(60,54,2,2,0.00,0,'2026-01-30 08:05:07','2026-01-30 08:05:07'),(61,55,2,2,0.00,0,'2026-01-30 08:06:23','2026-01-30 08:06:23'),(62,55,1,3,0.00,0,'2026-01-30 08:06:23','2026-01-30 08:06:23'),(63,56,1,3,0.00,0,'2026-01-30 08:08:05','2026-01-30 08:08:05'),(64,57,2,2,0.00,0,'2026-01-30 08:09:12','2026-01-30 08:09:12'),(65,58,2,2,0.00,0,'2026-01-30 08:10:26','2026-01-30 08:10:26'),(66,59,2,2,0.00,0,'2026-01-30 08:11:55','2026-01-30 08:11:55'),(67,60,2,2,0.00,0,'2026-01-30 08:12:37','2026-01-30 08:12:37'),(68,61,1,3,0.00,0,'2026-01-30 08:13:23','2026-01-30 08:13:23'),(69,62,6,2,0.00,0,'2026-01-30 08:14:03','2026-01-30 08:14:03'),(70,63,2,2,0.00,0,'2026-01-30 08:14:51','2026-01-30 08:14:51'),(71,64,2,2,0.00,0,'2026-01-30 08:16:43','2026-01-30 08:16:43'),(72,64,1,3,0.00,0,'2026-01-30 08:16:43','2026-01-30 08:16:43'),(73,65,2,2,0.00,0,'2026-01-30 08:17:58','2026-01-30 08:17:58'),(74,66,1,3,0.00,0,'2026-01-30 08:18:40','2026-01-30 08:18:40'),(75,67,10,2,0.00,0,'2026-01-30 08:20:10','2026-01-30 08:20:10'),(76,67,1,3,0.00,0,'2026-01-30 08:20:10','2026-01-30 08:20:10');
 /*!40000 ALTER TABLE `buy_infos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -59,8 +59,8 @@ DROP TABLE IF EXISTS `cache`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cache` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `value` mediumtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `value` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL,
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -72,7 +72,7 @@ CREATE TABLE `cache` (
 
 LOCK TABLES `cache` WRITE;
 /*!40000 ALTER TABLE `cache` DISABLE KEYS */;
-INSERT INTO `cache` VALUES ('laravel-cache-c525a5357e97fef8d3db25841c86da1a','i:1;',1769483461),('laravel-cache-c525a5357e97fef8d3db25841c86da1a:timer','i:1769483461;',1769483461);
+INSERT INTO `cache` VALUES ('laravel-cache-c525a5357e97fef8d3db25841c86da1a','i:1;',1769483461),('laravel-cache-c525a5357e97fef8d3db25841c86da1a:timer','i:1769483461;',1769483461),('mmt-cache-c525a5357e97fef8d3db25841c86da1a','i:1;',1769745128),('mmt-cache-c525a5357e97fef8d3db25841c86da1a:timer','i:1769745128;',1769745128);
 /*!40000 ALTER TABLE `cache` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -84,8 +84,8 @@ DROP TABLE IF EXISTS `cache_locks`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `cache_locks` (
-  `key` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `owner` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `key` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `owner` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `expiration` int NOT NULL,
   PRIMARY KEY (`key`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -109,8 +109,8 @@ DROP TABLE IF EXISTS `customers`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `customers` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -137,13 +137,13 @@ DROP TABLE IF EXISTS `dealers`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `dealers` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `dealers_name_unique` (`name`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -152,7 +152,7 @@ CREATE TABLE `dealers` (
 
 LOCK TABLES `dealers` WRITE;
 /*!40000 ALTER TABLE `dealers` DISABLE KEYS */;
-INSERT INTO `dealers` VALUES (1,'မျိုးမြန်မာ','Itaque a nihil eos itaque commodi aut perspiciatis.','2026-01-26 02:24:00','2026-01-26 02:24:00'),(2,'မိုးမြင့်ကြယ်',NULL,'2026-01-26 02:24:00','2026-01-26 02:24:00'),(3,'စံတင်','Quidem qui voluptate quo ullam non esse cumque.','2026-01-26 02:24:00','2026-01-26 02:24:00'),(4,'ဦးပြား','Ut quo earum voluptatem qui voluptas inventore deserunt odit.','2026-01-26 02:24:00','2026-01-26 02:24:00'),(5,'စိန်ရွှေမိုး',NULL,'2026-01-26 02:24:00','2026-01-26 02:24:00'),(6,'ရွာမ',NULL,'2026-01-26 02:24:00','2026-01-26 02:24:00'),(7,'အဘအောင်','Aut ipsam error maiores et vel omnis earum consectetur.','2026-01-26 02:24:00','2026-01-26 02:24:00'),(8,'မလိခ','Repellat et distinctio neque quasi quaerat nihil.','2026-01-26 02:24:00','2026-01-26 02:24:00'),(9,'ငွေအိမ်စံ','Et eos provident sequi sit porro officiis omnis.','2026-01-26 02:24:00','2026-01-26 02:24:00');
+INSERT INTO `dealers` VALUES (1,'မျိုးမြန်မာ','Itaque a nihil eos itaque commodi aut perspiciatis.','2026-01-26 02:24:00','2026-01-26 02:24:00'),(2,'မိုးမြင့်ကြယ်',NULL,'2026-01-26 02:24:00','2026-01-26 02:24:00'),(3,'စံတင်','Quidem qui voluptate quo ullam non esse cumque.','2026-01-26 02:24:00','2026-01-26 02:24:00'),(4,'ဦးပြား','Ut quo earum voluptatem qui voluptas inventore deserunt odit.','2026-01-26 02:24:00','2026-01-26 02:24:00'),(5,'စိန်ရွှေမိုး',NULL,'2026-01-26 02:24:00','2026-01-26 02:24:00'),(6,'ရွာမ',NULL,'2026-01-26 02:24:00','2026-01-26 02:24:00'),(7,'အဘအောင်','Aut ipsam error maiores et vel omnis earum consectetur.','2026-01-26 02:24:00','2026-01-26 02:24:00'),(8,'မလိခ','Repellat et distinctio neque quasi quaerat nihil.','2026-01-26 02:24:00','2026-01-26 02:24:00'),(9,'ငွေအိမ်စံ','Et eos provident sequi sit porro officiis omnis.','2026-01-26 02:24:00','2026-01-26 02:24:00'),(10,'ကိုပြား',NULL,'2026-01-30 07:44:01','2026-01-30 07:44:01'),(11,'ရာသက်ပန်',NULL,'2026-01-30 07:57:50','2026-01-30 07:57:50');
 /*!40000 ALTER TABLE `dealers` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -166,9 +166,9 @@ DROP TABLE IF EXISTS `expenses`;
 CREATE TABLE `expenses` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
-  `title` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `title` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `total` int NOT NULL,
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
@@ -193,11 +193,11 @@ DROP TABLE IF EXISTS `failed_jobs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `failed_jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `uuid` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `connection` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `queue` text COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `exception` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `uuid` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `connection` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `exception` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `failed_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   PRIMARY KEY (`id`),
   UNIQUE KEY `failed_jobs_uuid_unique` (`uuid`)
@@ -222,8 +222,8 @@ DROP TABLE IF EXISTS `items`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `items` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -249,13 +249,13 @@ DROP TABLE IF EXISTS `job_batches`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `job_batches` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `total_jobs` int NOT NULL,
   `pending_jobs` int NOT NULL,
   `failed_jobs` int NOT NULL,
-  `failed_job_ids` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
-  `options` mediumtext COLLATE utf8mb4_unicode_ci,
+  `failed_job_ids` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `options` mediumtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `cancelled_at` int DEFAULT NULL,
   `created_at` int NOT NULL,
   `finished_at` int DEFAULT NULL,
@@ -281,8 +281,8 @@ DROP TABLE IF EXISTS `jobs`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `jobs` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `queue` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `queue` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `attempts` tinyint unsigned NOT NULL,
   `reserved_at` int unsigned DEFAULT NULL,
   `available_at` int unsigned NOT NULL,
@@ -310,7 +310,7 @@ DROP TABLE IF EXISTS `migrations`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `migrations` (
   `id` int unsigned NOT NULL AUTO_INCREMENT,
-  `migration` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `migration` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `batch` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -337,17 +337,18 @@ CREATE TABLE `orders` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
   `date` date NOT NULL,
   `customer_id` bigint unsigned NOT NULL,
-  `location` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `location` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `car_rent_cost` int NOT NULL,
-  `grand_total` int NOT NULL,
+  `extra_cost` int NOT NULL DEFAULT '0',
   `count` int NOT NULL DEFAULT '1',
-  `note` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `grand_total` int NOT NULL,
+  `note` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
   KEY `orders_customer_id_foreign` (`customer_id`),
   CONSTRAINT `orders_customer_id_foreign` FOREIGN KEY (`customer_id`) REFERENCES `customers` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=18 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=68 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -356,7 +357,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,'2026-01-26',9,'အောင်မင်္ဂလာကျောင်း',25000,169000,1,NULL,'2026-01-26 06:19:01','2026-01-26 21:00:27'),(2,'2026-01-26',1,'ဂန္ဓမာလမ်း',25000,51000,1,NULL,'2026-01-26 06:23:25','2026-01-26 21:00:50'),(3,'2026-01-26',1,'ဂန္ဓမာလမ်း',25000,169000,1,NULL,'2026-01-26 06:27:34','2026-01-26 21:01:09'),(4,'2026-01-26',13,'ပေ ၄၀',20000,20000,1,NULL,'2026-01-26 06:52:21','2026-01-26 06:52:21'),(5,'2026-01-26',14,'သဇင်လမ်း',24000,24000,1,NULL,'2026-01-26 07:05:29','2026-01-26 07:06:19'),(6,'2026-01-26',13,'မာလာမြိုင်',20000,20000,1,NULL,'2026-01-26 07:09:33','2026-01-26 07:09:33'),(7,'2026-01-26',1,'ဆိုင်',25000,57500,1,NULL,'2026-01-26 07:11:52','2026-01-26 07:11:52'),(8,'2026-01-26',13,'သီရိ၄လမိး',18000,18000,1,NULL,'2026-01-26 07:15:56','2026-01-26 07:15:56'),(9,'2026-01-26',14,'တေဇ၀ဂ္ဂီ',26000,26000,1,NULL,'2026-01-26 07:15:56','2026-01-26 07:21:20'),(10,'2026-01-26',14,'8 မိုင်',28000,28000,1,NULL,'2026-01-26 07:23:43','2026-01-26 07:23:43'),(11,'2026-01-26',9,'ဗားကရာ',25000,25000,1,NULL,'2026-01-26 07:28:44','2026-01-26 21:00:00'),(12,'2026-01-01',13,'ကုန်းမြင့်ရိပ်သာ',27000,108000,4,NULL,'2026-01-26 21:06:57','2026-01-26 21:06:57'),(13,'2026-01-01',1,'မြေနီကုန်း',30000,60000,1,NULL,'2026-01-26 21:08:19','2026-01-26 21:20:42'),(14,'2026-01-01',1,'ဆိုင်ပုံ',25000,80250,1,NULL,'2026-01-26 21:12:01','2026-01-26 21:12:01'),(15,'2026-01-01',3,'ပဏ္ဏိတလမ်း',20000,207500,1,NULL,'2026-01-26 21:14:35','2026-01-26 21:15:46'),(16,'2026-01-01',3,'ပဏ္ဏိတလမ်း',20000,56000,1,NULL,'2026-01-26 21:17:38','2026-01-26 21:17:38'),(17,'2026-01-01',1,'မြေနီကုန်း',30000,60000,1,NULL,'2026-01-26 21:19:26','2026-01-26 21:19:26');
+INSERT INTO `orders` VALUES (1,'2026-01-26',9,'အောင်မင်္ဂလာကျောင်း',25000,0,1,169000,NULL,'2026-01-26 06:19:01','2026-01-26 21:00:27'),(2,'2026-01-26',1,'ဂန္ဓမာလမ်း',25000,0,1,51000,NULL,'2026-01-26 06:23:25','2026-01-26 21:00:50'),(3,'2026-01-26',1,'ဂန္ဓမာလမ်း',25000,0,1,169000,NULL,'2026-01-26 06:27:34','2026-01-26 21:01:09'),(4,'2026-01-26',13,'ပေ ၄၀',20000,0,1,20000,NULL,'2026-01-26 06:52:21','2026-01-26 06:52:21'),(5,'2026-01-26',14,'သဇင်လမ်း',24000,0,1,24000,NULL,'2026-01-26 07:05:29','2026-01-26 07:06:19'),(6,'2026-01-26',13,'မာလာမြိုင်',20000,0,1,20000,NULL,'2026-01-26 07:09:33','2026-01-26 07:09:33'),(7,'2026-01-26',1,'ဆိုင်',25000,0,1,57500,NULL,'2026-01-26 07:11:52','2026-01-26 07:11:52'),(8,'2026-01-26',13,'သီရိ၄လမိး',18000,0,1,18000,NULL,'2026-01-26 07:15:56','2026-01-26 07:15:56'),(9,'2026-01-26',14,'တေဇ၀ဂ္ဂီ',26000,0,1,26000,NULL,'2026-01-26 07:15:56','2026-01-26 07:21:20'),(10,'2026-01-26',14,'8 မိုင်',28000,0,1,28000,NULL,'2026-01-26 07:23:43','2026-01-26 07:23:43'),(11,'2026-01-26',9,'ဗားကရာ',25000,0,1,25000,NULL,'2026-01-26 07:28:44','2026-01-26 21:00:00'),(12,'2026-01-01',13,'ကုန်းမြင့်ရိပ်သာ',27000,0,4,108000,NULL,'2026-01-26 21:06:57','2026-01-26 21:06:57'),(13,'2026-01-01',1,'မြေနီကုန်း',30000,0,1,60000,NULL,'2026-01-26 21:08:19','2026-01-26 21:20:42'),(14,'2026-01-01',1,'ဆိုင်ပုံ',25000,0,1,80250,NULL,'2026-01-26 21:12:01','2026-01-26 21:12:01'),(15,'2026-01-01',3,'ပဏ္ဏိတလမ်း',20000,0,1,207500,NULL,'2026-01-26 21:14:35','2026-01-26 21:15:46'),(16,'2026-01-01',3,'ပဏ္ဏိတလမ်း',20000,0,1,56000,NULL,'2026-01-26 21:17:38','2026-01-26 21:17:38'),(17,'2026-01-01',1,'မြေနီကုန်း',30000,0,1,60000,NULL,'2026-01-26 21:19:26','2026-01-26 21:19:26'),(18,'2026-01-02',1,'မြေနီကုန်း',30000,0,2,120000,NULL,'2026-01-29 21:27:26','2026-01-29 21:27:26'),(19,'2026-01-02',1,'မြေနီကုန်း',30000,0,1,186250,NULL,'2026-01-29 21:28:32','2026-01-29 21:28:32'),(20,'2026-01-02',13,'မာလာမြိုင်',20000,0,1,20000,NULL,'2026-01-29 21:29:55','2026-01-29 21:29:55'),(21,'2026-01-02',1,'ဆီဆုံလမ်း',28000,0,1,52000,NULL,'2026-01-29 21:31:18','2026-01-30 07:29:37'),(22,'2026-01-02',13,'မင်္ဂလာသီရိလမ်း',27000,0,1,27000,NULL,'2026-01-29 21:32:08','2026-01-29 21:34:15'),(23,'2026-01-02',13,'မင်္ဂလာသီရိလမ်း',27000,0,1,27000,NULL,'2026-01-29 21:33:53','2026-01-29 21:33:53'),(25,'2026-01-02',4,'ကောင်းမြတ်သာ',30000,0,1,60000,NULL,'2026-01-29 21:41:11','2026-01-30 07:28:35'),(26,'2026-01-03',1,'မြေနီကုန်း',30000,0,1,60000,NULL,'2026-01-29 21:42:24','2026-01-29 21:42:24'),(27,'2026-01-03',13,'သာသနာ့ရက္ခိတာကျောင်း',23000,0,1,23000,NULL,'2026-01-29 21:44:19','2026-01-29 21:44:19'),(28,'2026-01-03',1,'မြေနီကုန်း',30000,0,1,60000,NULL,'2026-01-29 21:50:37','2026-01-29 21:50:37'),(31,'2026-01-03',13,'အေးရိပ်မွန်',18000,0,1,18000,NULL,'2026-01-29 22:34:43','2026-01-29 22:35:13'),(32,'2026-01-03',3,'မယ်ဇီကုန်း',20000,0,2,415000,NULL,'2026-01-29 22:37:44','2026-01-30 07:35:06'),(33,'2026-01-03',3,'မယ်ဇီကုန်း',20000,0,1,56000,NULL,'2026-01-29 22:40:53','2026-01-30 07:36:56'),(34,'2026-01-03',1,'မြေနီကုန်း',30000,0,1,60000,NULL,'2026-01-29 22:42:17','2026-01-30 07:38:54'),(35,'2026-01-03',1,'ဆိုင်ပုံ',25000,0,1,105500,NULL,'2026-01-29 22:44:27','2026-01-29 22:44:27'),(36,'2026-01-03',1,'အလယ်တောရ',30000,0,1,42000,NULL,'2026-01-29 22:45:03','2026-01-30 07:40:36'),(37,'2026-01-03',1,'ဆီဆုံလမ်း',28000,0,1,102500,NULL,'2026-01-29 22:46:43','2026-01-29 22:47:17'),(39,'2026-01-05',13,'မာလာမြိုင်၃လမ်း',20000,0,7,140000,NULL,'2026-01-30 07:03:27','2026-01-30 07:03:27'),(40,'2026-01-05',13,'မင်္ဂလာသီရိလမ်း',27000,0,1,27000,NULL,'2026-01-30 07:09:20','2026-01-30 07:09:20'),(41,'2026-01-05',13,'မင်္ဂလာသီရိကျောင်း',27000,0,2,54000,NULL,'2026-01-30 07:12:26','2026-01-30 07:12:26'),(42,'2026-01-05',1,'ပြည့်ဝစေ',25000,0,1,105500,NULL,'2026-01-30 07:19:07','2026-01-30 07:19:07'),(43,'2026-01-03',13,'ဘုရားလမ်း',20000,0,3,60000,NULL,'2026-01-30 07:44:01','2026-01-30 07:44:01'),(44,'2026-01-05',13,'ရွှေညောင်ပင်',18000,0,1,18000,NULL,'2026-01-30 07:50:17','2026-01-30 07:50:17'),(45,'2026-01-05',13,'မင်္ဂလာသီရိကျောင်း',20000,0,1,20000,NULL,'2026-01-30 07:52:46','2026-01-30 07:52:46'),(46,'2026-01-05',13,'ပန်းတနော်',23000,0,2,46000,NULL,'2026-01-30 07:53:55','2026-01-30 07:53:55'),(47,'2026-01-05',5,'ရိုးခြံရိပ်သာ',0,0,1,0,NULL,'2026-01-30 07:55:18','2026-01-30 07:56:03'),(48,'2026-01-05',13,'သမိုင်း ၁၁လမ်း',22000,0,1,22000,NULL,'2026-01-30 07:57:50','2026-01-30 07:57:50'),(49,'2026-01-06',13,'သမိုင်း ၁၂လမ်း',22000,0,3,66000,NULL,'2026-01-30 07:59:38','2026-01-30 07:59:38'),(50,'2026-01-06',13,'မာလာမြိုင် ၇ လမ်း',20000,0,3,60000,NULL,'2026-01-30 08:00:59','2026-01-30 08:00:59'),(51,'2026-01-06',13,'သာယာကုန်း',27000,0,1,27000,NULL,'2026-01-30 08:01:50','2026-01-30 08:01:50'),(52,'2026-01-06',13,'သာယာကုန်း',20000,0,1,20000,NULL,'2026-01-30 08:02:49','2026-01-30 08:02:49'),(53,'2026-01-06',13,'မင်္ဂလာသီရိလမ်း',20000,0,1,20000,NULL,'2026-01-30 08:04:06','2026-01-30 08:04:06'),(54,'2026-01-06',13,'ပန်းတနော်',25000,0,4,100000,NULL,'2026-01-30 08:05:07','2026-01-30 08:06:57'),(55,'2026-01-06',13,'အောင်မြေသာစည်',20000,0,1,20000,NULL,'2026-01-30 08:06:23','2026-01-30 08:08:25'),(56,'2026-01-06',3,'ပဏ္ဏိတလမ်း',20000,0,1,207500,NULL,'2026-01-30 08:08:05','2026-01-30 08:08:05'),(57,'2026-01-06',13,'ဘာဝနာလမ်း',25000,0,1,25000,NULL,'2026-01-30 08:09:12','2026-01-30 08:09:12'),(58,'2026-01-07',13,'ပန်းတနော်',25000,0,2,50000,NULL,'2026-01-30 08:10:26','2026-01-30 08:10:26'),(59,'2026-01-07',13,'မာလာမြိုင် ၅',20000,0,11,220000,NULL,'2026-01-30 08:11:55','2026-01-30 08:11:55'),(60,'2026-01-07',13,'မာလာမြိုင် ၇',20000,0,1,20000,NULL,'2026-01-30 08:12:37','2026-01-30 08:12:37'),(61,'2026-01-07',13,'မင်္ဂလာသီရိလမ်း',27000,0,1,27000,NULL,'2026-01-30 08:13:23','2026-01-30 08:13:23'),(62,'2026-01-07',13,'မင်္ဂလာသီရိလမ်း',20000,0,1,20000,NULL,'2026-01-30 08:14:03','2026-01-30 08:14:03'),(63,'2026-01-07',13,'သမိုင်း ၁၁လမ်း',22000,0,1,22000,NULL,'2026-01-30 08:14:51','2026-01-30 08:14:51'),(64,'2026-01-07',3,'ဓါတုဗေဒလမ်း',18000,0,1,155000,NULL,'2026-01-30 08:16:43','2026-01-30 08:16:56'),(65,'2026-01-07',10,'ကျောင်းကြီးတိုက်',0,0,1,0,NULL,'2026-01-30 08:17:58','2026-01-30 08:17:58'),(66,'2026-01-07',13,'အင်းယားလမ်း',25000,0,1,25000,NULL,'2026-01-30 08:18:40','2026-01-30 08:18:40'),(67,'2026-01-07',1,'ပြည့်ဝစေ',25000,0,1,80250,NULL,'2026-01-30 08:20:10','2026-01-30 08:20:10');
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -368,8 +369,8 @@ DROP TABLE IF EXISTS `password_reset_tokens`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `password_reset_tokens` (
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `token` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `token` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`email`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -404,7 +405,7 @@ CREATE TABLE `sell_infos` (
   KEY `sell_infos_item_id_foreign` (`item_id`),
   CONSTRAINT `sell_infos_item_id_foreign` FOREIGN KEY (`item_id`) REFERENCES `items` (`id`),
   CONSTRAINT `sell_infos_order_id_foreign` FOREIGN KEY (`order_id`) REFERENCES `orders` (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=77 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -413,7 +414,7 @@ CREATE TABLE `sell_infos` (
 
 LOCK TABLES `sell_infos` WRITE;
 /*!40000 ALTER TABLE `sell_infos` DISABLE KEYS */;
-INSERT INTO `sell_infos` VALUES (1,1,3,0.90,160000,'2026-01-26 06:19:01','2026-01-26 06:19:01'),(2,2,2,100.00,260,'2026-01-26 06:23:25','2026-01-26 06:23:25'),(3,3,3,90.00,1600,'2026-01-26 06:27:34','2026-01-26 06:27:34'),(4,4,3,0.00,0,'2026-01-26 06:52:21','2026-01-26 06:52:21'),(5,5,2,0.00,0,'2026-01-26 07:05:29','2026-01-26 07:06:19'),(6,6,3,0.00,0,'2026-01-26 07:09:33','2026-01-26 07:09:33'),(7,7,2,1.25,26000,'2026-01-26 07:11:52','2026-01-26 21:02:36'),(8,8,2,0.00,0,'2026-01-26 07:15:56','2026-01-26 07:15:56'),(9,9,2,0.00,0,'2026-01-26 07:15:56','2026-01-26 07:15:56'),(10,10,2,0.00,0,'2026-01-26 07:23:43','2026-01-26 07:23:43'),(11,11,2,0.00,0,'2026-01-26 07:28:44','2026-01-26 07:28:44'),(12,12,2,0.00,0,'2026-01-26 21:06:57','2026-01-26 21:06:57'),(13,13,2,1.25,24000,'2026-01-26 21:08:19','2026-01-26 21:20:42'),(14,14,2,1.00,24000,'2026-01-26 21:12:01','2026-01-26 21:12:01'),(15,14,3,0.25,125000,'2026-01-26 21:12:01','2026-01-26 21:12:01'),(16,15,3,1.50,125000,'2026-01-26 21:14:35','2026-01-26 21:14:35'),(17,16,2,1.50,24000,'2026-01-26 21:17:38','2026-01-26 21:17:38'),(18,17,2,1.25,24000,'2026-01-26 21:19:26','2026-01-26 21:19:26');
+INSERT INTO `sell_infos` VALUES (1,1,3,0.90,160000,'2026-01-26 06:19:01','2026-01-26 06:19:01'),(2,2,2,100.00,260,'2026-01-26 06:23:25','2026-01-26 06:23:25'),(3,3,3,90.00,1600,'2026-01-26 06:27:34','2026-01-26 06:27:34'),(4,4,3,0.00,0,'2026-01-26 06:52:21','2026-01-26 06:52:21'),(5,5,2,0.00,0,'2026-01-26 07:05:29','2026-01-26 07:06:19'),(6,6,3,0.00,0,'2026-01-26 07:09:33','2026-01-26 07:09:33'),(7,7,2,1.25,26000,'2026-01-26 07:11:52','2026-01-26 21:02:36'),(8,8,2,0.00,0,'2026-01-26 07:15:56','2026-01-26 07:15:56'),(9,9,2,0.00,0,'2026-01-26 07:15:56','2026-01-26 07:15:56'),(10,10,2,0.00,0,'2026-01-26 07:23:43','2026-01-26 07:23:43'),(11,11,2,0.00,0,'2026-01-26 07:28:44','2026-01-26 07:28:44'),(12,12,2,0.00,0,'2026-01-26 21:06:57','2026-01-26 21:06:57'),(13,13,2,1.25,24000,'2026-01-26 21:08:19','2026-01-26 21:20:42'),(14,14,2,1.00,24000,'2026-01-26 21:12:01','2026-01-26 21:12:01'),(15,14,3,0.25,125000,'2026-01-26 21:12:01','2026-01-26 21:12:01'),(16,15,3,1.50,125000,'2026-01-26 21:14:35','2026-01-26 21:14:35'),(17,16,2,1.50,24000,'2026-01-26 21:17:38','2026-01-26 21:17:38'),(18,17,2,1.25,24000,'2026-01-26 21:19:26','2026-01-26 21:19:26'),(19,18,2,1.25,24000,'2026-01-29 21:27:26','2026-01-29 21:27:26'),(20,19,3,1.25,125000,'2026-01-29 21:28:32','2026-01-29 21:28:32'),(21,20,2,0.00,0,'2026-01-29 21:29:55','2026-01-29 21:29:55'),(22,21,2,1.00,24000,'2026-01-29 21:31:18','2026-01-30 07:29:37'),(23,22,3,0.00,0,'2026-01-29 21:32:08','2026-01-29 21:32:08'),(24,23,2,0.00,0,'2026-01-29 21:33:53','2026-01-29 21:33:53'),(26,25,2,1.25,24000,'2026-01-29 21:41:11','2026-01-29 21:41:11'),(27,26,2,1.25,24000,'2026-01-29 21:42:24','2026-01-29 21:42:24'),(28,27,2,0.00,0,'2026-01-29 21:44:19','2026-01-29 21:44:19'),(29,27,3,0.00,0,'2026-01-29 21:44:19','2026-01-29 21:44:19'),(30,28,2,1.25,24000,'2026-01-29 21:50:37','2026-01-29 21:50:37'),(33,31,2,0.00,0,'2026-01-29 22:34:44','2026-01-29 22:34:44'),(34,32,3,1.50,125000,'2026-01-29 22:37:44','2026-01-29 22:37:44'),(35,33,2,1.50,24000,'2026-01-29 22:40:53','2026-01-29 22:40:53'),(36,34,2,1.25,24000,'2026-01-29 22:42:17','2026-01-29 22:42:17'),(37,35,2,0.75,24000,'2026-01-29 22:44:27','2026-01-29 22:44:27'),(38,35,3,0.50,125000,'2026-01-29 22:44:27','2026-01-29 22:44:27'),(39,36,2,0.50,24000,'2026-01-29 22:45:03','2026-01-30 07:40:36'),(40,37,2,0.50,24000,'2026-01-29 22:46:43','2026-01-29 22:46:43'),(41,37,3,0.50,125000,'2026-01-29 22:46:43','2026-01-29 22:46:43'),(43,39,2,0.00,0,'2026-01-30 07:03:27','2026-01-30 07:03:27'),(44,40,2,0.00,0,'2026-01-30 07:09:20','2026-01-30 07:09:20'),(45,41,3,0.00,0,'2026-01-30 07:12:26','2026-01-30 07:12:26'),(46,42,2,0.75,24000,'2026-01-30 07:19:07','2026-01-30 07:19:07'),(47,42,3,0.50,125000,'2026-01-30 07:19:07','2026-01-30 07:19:07'),(48,43,2,0.00,0,'2026-01-30 07:44:01','2026-01-30 07:44:01'),(49,43,3,0.00,0,'2026-01-30 07:44:01','2026-01-30 07:44:01'),(50,44,2,0.00,0,'2026-01-30 07:50:17','2026-01-30 07:50:17'),(51,45,2,0.00,0,'2026-01-30 07:52:46','2026-01-30 07:52:46'),(52,46,2,0.00,0,'2026-01-30 07:53:55','2026-01-30 07:53:55'),(53,47,2,0.00,0,'2026-01-30 07:55:18','2026-01-30 07:55:18'),(54,48,2,0.00,0,'2026-01-30 07:57:50','2026-01-30 07:57:50'),(55,49,3,0.00,0,'2026-01-30 07:59:38','2026-01-30 07:59:38'),(56,50,3,0.00,0,'2026-01-30 08:00:59','2026-01-30 08:00:59'),(57,51,3,0.00,0,'2026-01-30 08:01:50','2026-01-30 08:01:50'),(58,52,2,0.00,0,'2026-01-30 08:02:49','2026-01-30 08:02:49'),(59,53,3,0.00,0,'2026-01-30 08:04:06','2026-01-30 08:04:06'),(60,54,2,0.00,0,'2026-01-30 08:05:07','2026-01-30 08:05:07'),(61,55,2,0.00,0,'2026-01-30 08:06:23','2026-01-30 08:06:23'),(62,55,3,0.00,0,'2026-01-30 08:06:23','2026-01-30 08:06:23'),(63,56,3,1.50,125000,'2026-01-30 08:08:05','2026-01-30 08:08:05'),(64,57,2,0.00,0,'2026-01-30 08:09:12','2026-01-30 08:09:12'),(65,58,2,0.00,0,'2026-01-30 08:10:26','2026-01-30 08:10:26'),(66,59,2,0.00,0,'2026-01-30 08:11:55','2026-01-30 08:11:55'),(67,60,2,0.00,0,'2026-01-30 08:12:37','2026-01-30 08:12:37'),(68,61,3,0.00,0,'2026-01-30 08:13:23','2026-01-30 08:13:23'),(69,62,2,0.00,0,'2026-01-30 08:14:03','2026-01-30 08:14:03'),(70,63,2,0.00,0,'2026-01-30 08:14:51','2026-01-30 08:14:51'),(71,64,2,0.50,24000,'2026-01-30 08:16:43','2026-01-30 08:16:43'),(72,64,3,1.00,125000,'2026-01-30 08:16:43','2026-01-30 08:16:43'),(73,65,2,0.00,0,'2026-01-30 08:17:58','2026-01-30 08:17:58'),(74,66,3,0.00,0,'2026-01-30 08:18:40','2026-01-30 08:18:40'),(75,67,2,1.00,24000,'2026-01-30 08:20:10','2026-01-30 08:20:10'),(76,67,3,0.25,125000,'2026-01-30 08:20:10','2026-01-30 08:20:10');
 /*!40000 ALTER TABLE `sell_infos` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -425,11 +426,11 @@ DROP TABLE IF EXISTS `sessions`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `sessions` (
-  `id` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `id` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `user_id` bigint unsigned DEFAULT NULL,
-  `ip_address` varchar(45) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `user_agent` text COLLATE utf8mb4_unicode_ci,
-  `payload` longtext COLLATE utf8mb4_unicode_ci NOT NULL,
+  `ip_address` varchar(45) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `user_agent` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `payload` longtext CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `last_activity` int NOT NULL,
   PRIMARY KEY (`id`),
   KEY `sessions_user_id_index` (`user_id`),
@@ -443,7 +444,7 @@ CREATE TABLE `sessions` (
 
 LOCK TABLES `sessions` WRITE;
 /*!40000 ALTER TABLE `sessions` DISABLE KEYS */;
-INSERT INTO `sessions` VALUES ('QaAAu0JMzWOr3YypbvS2F3nKtIlkUBvehZZEnhWD',NULL,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0','YTozOntzOjY6Il90b2tlbiI7czo0MDoiUmlQcVBxQjJ6MDlZdTc2cEI3UEhYMktnd01PbEFwa3pkNzV4TlVLTSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6MTU6Imh0dHA6Ly9tbXQudGVzdCI7czo1OiJyb3V0ZSI7czo0OiJob21lIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1769483383),('Qxt7XcjiNSwrl110mXBkzqxENZms6ki0idqjhplX',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiOVl4SHNUSHBuZE5PMWthbU44T2oycFRjeUNZUnpyUTRCU3NHV1N2MyI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToyOntzOjM6InVybCI7czozMToiaHR0cDovL21tdC50ZXN0L2JhY2t1cC1kYXRhYmFzZSI7czo1OiJyb3V0ZSI7czoxNToiYmFja3VwLWRhdGFiYXNlIjt9czo2OiJfZmxhc2giO2E6Mjp7czozOiJvbGQiO2E6MDp7fXM6MzoibmV3IjthOjA6e319fQ==',1769488408),('TXeorDzwKB4AxsYJy2C9gCrmXLgMjsTa3LFu0s3D',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:147.0) Gecko/20100101 Firefox/147.0','YTo0OntzOjY6Il90b2tlbiI7czo0MDoia2xjTHhyZVpwUkxISWRpblNTRGw0TkdtRUk3UjdOcmIzcGZTand6OSI7czo5OiJfcHJldmlvdXMiO2E6Mjp7czozOiJ1cmwiO3M6Nzc6Imh0dHA6Ly9tbXQudGVzdC9vcmRlcnMvcHJpbnQ/Y3VzdG9tZXI9MSZkZWFsZXI9JmZyb209MjAyNi0wMS0wMSZ0bz0yMDI2LTAxLTMxIjtzOjU6InJvdXRlIjtzOjEyOiJvcmRlcnMucHJpbnQiO31zOjY6Il9mbGFzaCI7YToyOntzOjM6Im9sZCI7YTowOnt9czozOiJuZXciO2E6MDp7fX1zOjUwOiJsb2dpbl93ZWJfNTliYTM2YWRkYzJiMmY5NDAxNTgwZjAxNGM3ZjU4ZWE0ZTMwOTg5ZCI7aToxO30=',1769483509);
+INSERT INTO `sessions` VALUES ('NHOME8WtBOOdH72Ux2CqbRGDEvrfKPpP4yg1gtUo',1,'127.0.0.1','Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/144.0.0.0 Safari/537.36','YTo0OntzOjY6Il90b2tlbiI7czo0MDoiTmpreXNwUWdKNU84Q24wZ1BLSFBMeHBJR3NUcUFPMzRuYnN5UFliUCI7czo1MDoibG9naW5fd2ViXzU5YmEzNmFkZGMyYjJmOTQwMTU4MGYwMTRjN2Y1OGVhNGUzMDk4OWQiO2k6MTtzOjk6Il9wcmV2aW91cyI7YToyOntzOjM6InVybCI7czozMjoiaHR0cDovL21tdC5sb2NhbC9iYWNrdXAtZGF0YWJhc2UiO3M6NToicm91dGUiO3M6MTU6ImJhY2t1cC1kYXRhYmFzZSI7fXM6NjoiX2ZsYXNoIjthOjI6e3M6Mzoib2xkIjthOjA6e31zOjM6Im5ldyI7YTowOnt9fX0=',1769837372);
 /*!40000 ALTER TABLE `sessions` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -456,14 +457,14 @@ DROP TABLE IF EXISTS `users`;
 /*!50503 SET character_set_client = utf8mb4 */;
 CREATE TABLE `users` (
   `id` bigint unsigned NOT NULL AUTO_INCREMENT,
-  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `email` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `name` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `email` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
-  `password` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
-  `two_factor_secret` text COLLATE utf8mb4_unicode_ci,
-  `two_factor_recovery_codes` text COLLATE utf8mb4_unicode_ci,
+  `password` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci NOT NULL,
+  `two_factor_secret` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
+  `two_factor_recovery_codes` text CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci,
   `two_factor_confirmed_at` timestamp NULL DEFAULT NULL,
-  `remember_token` varchar(100) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `remember_token` varchar(100) CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`),
@@ -490,4 +491,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2026-01-27 11:33:47
+-- Dump completed on 2026-01-31 12:08:32
