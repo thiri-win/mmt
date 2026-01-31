@@ -402,6 +402,18 @@ onMounted(() => {
                         <td>
                             <input
                                 type="number"
+                                name="count"
+                                id="count"
+                                placeholder="ခေါက်ရေ"
+                                v-model="form.count"
+                                :class="
+                                    form.errors.count ? 'border-red-300' : ''
+                                "
+                            />
+                        </td>
+                        <td>
+                            <input
+                                type="number"
                                 id="grand_total"
                                 name="grand_total"
                                 disabled
@@ -411,18 +423,6 @@ onMounted(() => {
                                     form.errors.grand_total
                                         ? 'border-red-300'
                                         : ''
-                                "
-                            />
-                        </td>
-                        <td>
-                            <input
-                                type="number"
-                                name="count"
-                                id="count"
-                                placeholder="ခေါက်ရေ"
-                                v-model="form.count"
-                                :class="
-                                    form.errors.count ? 'border-red-300' : ''
                                 "
                             />
                         </td>
