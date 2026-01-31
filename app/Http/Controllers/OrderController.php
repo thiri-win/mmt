@@ -261,8 +261,8 @@ class OrderController extends Controller
             ->paperSize(177, 217, 'mm')
             ->headerView('partials._header', ['customer' => $customer, 'date' => $groups->first()->date])
             ->margins(55, 5, 0, 5)
-            ->withBrowsershot(function($browsershot) {
-                $browsershot->noSandbox();
+            ->withBrowsershot(function ($browsershot) {
+                $browsershot->setChromePath(env('BROWSER_PATH'))->noSandbox();
             })
             ->name('orders.pdf');
     }
