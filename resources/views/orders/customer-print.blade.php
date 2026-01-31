@@ -7,10 +7,6 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>PDF Print</title>
     <style>
-        @page {
-            size: 177mm 216mm;
-        }
-
         @font-face {
             font-family: 'padauk';
             src: url('{{ storage_path('fonts/Padauk-Regular.ttf') }}') format('truetype');
@@ -31,10 +27,14 @@
         td,
         th {
             border: 1px solid #111;
-            padding: 3px;
             white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
+        }
+        
+        td div {
+            height: 20px;
+            overflow:hidden;
         }
 
         /* မျက်နှာသစ်ကူးဖို့ CSS */
@@ -50,14 +50,43 @@
 </head>
 
 <body>
+
 @php
-    $totalrows = 16;
     $chunks = $groups->chunk($totalrows);
     $allPageTotals = []; // စာမျက်နှာအလိုက် Total တွေကို သိမ်းဖို့ array
     $grandTotalAllPages = 0; // စာမျက်နှာအားလုံးပေါင်း Grand Total
+    $romanMap = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
 @endphp
-@foreach ($chunks as $chunk)
+@foreach ($chunks as $index => $chunk)
     <div class="page-break">
+        <table style="margin-bottom: 15px;">
+        <tr>
+            <td style="width: 15%; border: 0;">
+                <label for="Customer">အမည်</label>
+            </td>
+            <td style="border: 0; border-bottom: 1px solid #111;">
+                <span>{{ $customer->name ?? '' }}</span>
+            </td>
+            <td style="border: 0;>
+                <label for="date">နေ့စွဲ</label>
+            </td>
+            <td style="border: 0; border-bottom: 1px solid #111;">
+                <span>{{$date->format('M-Y')}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 0;">
+                <label for="">အကြောင်းအရာ</label>
+            </td>
+            <td colspan="3" style="border: 0; border-bottom: 1px solid #111;">
+                @if(count($chunks) > 1)
+                    <span>Voucher {{ $romanMap[$index] ?? ($index+1) }}</span>
+                @endif
+            </td>
+        </tr>
+    </table>
+                
+                
         @php
             $columnSum = 0;
         @endphp
@@ -76,8 +105,10 @@
                 @php
                     $columnSum += (float) $order->grand_total;
                 @endphp
-                <tr style="vertical-align: middle;">
-                    <td>{{ $order->date->format('d-m-y') }}</td>
+                <tr style="vertical-align: middle; overflow:hidden">
+                    <td>
+                        {{ $order->date->format('d-m-y') }}
+                    </td>
                     <td>{{ $order->location }}</td>
                     <td>
                         @if($order->customer->id !== 13)
@@ -89,7 +120,7 @@
                             @endforeach
                         @endif
                     </td>
-                    <td>{{ $order->count }}</td>
+                    <td style="text-align:center">{{ $order->count }}</td>
                     <td style="text-align: right">{{ number_format($order->grand_total) }}</td>
                 </tr>
             @endforeach
@@ -98,7 +129,9 @@
             @endphp
             @for ($i = 0; $i < $remainingRows; $i++)
                 <tr>
-                    <td>&nbsp;</td>
+                    <td>
+                        <div>&nbsp;</div>
+                    </td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
                     <td>&nbsp;</td>
@@ -160,6 +193,30 @@
 {{-- Loop အကုန်လုံး ပြီးသွားတဲ့အခါ နောက်ဆုံးမှာ စာမျက်နှာ ၁ ခုထက်ပိုမှ Summary Page ထုတ်မည် --}}
 @if (count($chunks) > 1)
     <div class="page-break">
+        <table style="margin-bottom: 15px;">
+        <tr>
+            <td style="width: 15%; border: 0;">
+                <label for="Customer">အမည်</label>
+            </td>
+            <td style="border: 0; border-bottom: 1px solid #111;">
+                <span>{{ $customer->name ?? '' }}</span>
+            </td>
+            <td style="border: 0;>
+                <label for="date">နေ့စွဲ</label>
+            </td>
+            <td style="border: 0; border-bottom: 1px solid #111;">
+                <span>{{$date->format('M-Y')}}</span>
+            </td>
+        </tr>
+        <tr>
+            <td style="border: 0;">
+                <label for="">အကြောင်းအရာ</label>
+            </td>
+            <td colspan="3" style="border: 0; border-bottom: 1px solid #111;">
+                <span></span
+            </td>
+        </tr>
+    </table>
         <table>
             <thead>
             <tr>
@@ -171,20 +228,23 @@
             <tbody>
             @foreach ($allPageTotals as $index => $subTotal)
                 <tr>
-                    <td style="text-align: center;">{{ $index + 1 }}</td>
+                    <td style="text-align: center;">
+                        <div>{{ $index + 1 }}</div>
+                    </td>
                     <td colspan="3" style="padding-left: 20px;">Voucher {{ $index + 1 }}</td>
                     <td style="text-align: right; padding-right: 20px;">{{ number_format($subTotal) }}</td>
                 </tr>
             @endforeach
 
-            {{-- ၂။ Summary Row ၁၀ ခုပြည့်အောင် အလွတ်ဖြည့်မယ် --}}
             @php
                 $summaryRemainingRows = $totalrows - count($allPageTotals);
             @endphp
 
             @for ($i = 0; $i < $summaryRemainingRows; $i++)
                 <tr>
-                    <td style="text-align: center;">{{ count($allPageTotals) + $i + 1 }}</td>
+                    <td style="text-align: center;">
+                        <div>{{ count($allPageTotals) + $i + 1 }}</div>
+                    </td>
                     <td colspan="3"></td>
                     <td></td>
                 </tr>

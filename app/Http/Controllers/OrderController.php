@@ -258,11 +258,19 @@ class OrderController extends Controller
     {
         $groups = $this->getFilteredOrders($request);
         $customer = Customer::find($request->customer);
+        $totalrows = 16;
+        $totalChunks = $groups->get()->count();
 
-        return Pdf::view('orders.customer-print', ['groups' => $groups->get()])
+        return Pdf::view('orders.customer-print', [
+            'groups' => $groups->get(), 
+            'totalrows' => $totalrows, 
+            'totalChunks' => $totalChunks,
+            'customer' => $customer, 
+            'date' => $groups->first()->date ?? ''
+            ])
             ->paperSize(177, 217, 'mm')
-            ->headerView('partials._header', ['customer' => $customer, 'date' => $groups->first()->date])
-            ->margins(55, 5, 0, 5)
+            ->headerView('partials._header')
+            ->margins(30, 15, 20, 5)
             ->withBrowsershot(function ($browsershot) {
                 $browsershot->setChromePath(env('BROWSER_PATH'))->noSandbox();
             })

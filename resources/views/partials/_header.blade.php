@@ -18,12 +18,12 @@
     header {
         width: 100%;
         padding: 0px 25px;
-        padding-top: 25px;
+        padding-top: 7px;
     }
 
     .heading {
         text-align: center;
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     .heading h1 {
@@ -53,6 +53,7 @@
         width: 40%;
         border-bottom: 1px solid #000;
     }
+
 </style>
 
 <header>
@@ -61,28 +62,4 @@
         <h2>ဘိလပ်မြေ၊ အုတ်၊ သဲ၊ ကျောက် ရောင်းဝယ် သယ်ယူပို့ဆောင်ရေး</h2>
         <p>&phone; 09-443060657, 09-788464997, 09-5167659, 09-443903985</p>
     </div>
-    <table>
-        <tr>
-            <td>
-                <label for="Customer">အမည်</label>
-            </td>
-            <td>
-                <span>{{ $customer->name ?? '' }}</span>
-            </td>
-            <td>
-                <label for="date">နေ့စွဲ</label>
-            </td>
-            <td>
-                <span>{{$date->format('M-Y')}}</span>
-            </td>
-        </tr>
-        <tr>
-            <td>
-                <label for="">အကြောင်းအရာ</label>
-            </td>
-            <td colspan="3">
-                <span></span>
-            </td>
-        </tr>
-    </table>
 </header>

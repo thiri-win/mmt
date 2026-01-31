@@ -1,4 +1,5 @@
 <script setup lang="ts">
+import AppLogoIcon from '@/components/AppLogoIcon.vue';
 import { dashboard, login, register } from '@/routes';
 import { Head, Link } from '@inertiajs/vue3';
 import { Truck, Phone } from 'lucide-vue-next';
@@ -55,10 +56,10 @@ withDefaults(
             <main
                 class="flex w-full max-w-[335px] flex-col items-center overflow-hidden rounded-lg lg:max-w-4xl dark:text-white"
             >
-                <Truck class="h-30 w-full" />
+                <AppLogoIcon></AppLogoIcon>
                 <h1>ကိုမောင်မောင်သန်းနှင့် ညီအစ်ကိုများ</h1>
-                <p class="mb-2">အုတ် ၊သဲ၊ ကျောက်၊ ဘိလပ်မြေ ရောင်းဝယ်သယ်ယူပို့ဆောင်ရေး</p>
-                <p class="flex items-center"><Phone class="mr-2"/>095145721</p>
+                <p class="mb-2 text-center">အုတ် ၊သဲ၊ ကျောက်၊ ဘိလပ်မြေ ရောင်းဝယ်သယ်ယူပို့ဆောင်ရေး</p>
+                <p class="flex items-center text-center"><Phone class="mr-2"/>095145721</p>
             </main>
         </div>
         <div class="hidden h-14.5 lg:block"></div>
