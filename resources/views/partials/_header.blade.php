@@ -37,29 +37,12 @@
     .heading p {
         font-size: 15px;
     }
-
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    td {
-        /* border: 1px solid green; */
-        width: 10%;
-        padding: 3px;
-    }
-
-    td:nth-child(2n) {
-        width: 40%;
-        border-bottom: 1px solid #000;
-    }
-
 </style>
 
 <header>
     <div class="heading">
         <h1>ကိုမောင်မောင်သန်း နှင့် ညီအကိုများ</h1>
         <h2>ဘိလပ်မြေ၊ အုတ်၊ သဲ၊ ကျောက် ရောင်းဝယ် သယ်ယူပို့ဆောင်ရေး</h2>
-        <p>&phone; 09-443060657, 09-788464997, 09-5167659, 09-443903985</p>
+        <p>&phone; 09-443060657, 09-788464997, 09-5167659, 09-765167659</p>
     </div>
 </header>

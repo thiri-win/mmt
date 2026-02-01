@@ -202,8 +202,10 @@ class OrderController extends Controller
             ->pluck('id')
             ->filter(fn($id) => is_numeric($id) && $id > 0)
             ->map(fn($id) => (int)$id)
-            ->all();;
+            ->all();
+
         $order->sellinfos()->whereNotIn('id', $incomingSellItems)->delete();
+
         foreach ($validatedData['sellItems'] as $item) {
             if (!is_numeric($item['id'])) {
                 $order->sellinfos()->create($item);
@@ -258,19 +260,19 @@ class OrderController extends Controller
     {
         $groups = $this->getFilteredOrders($request);
         $customer = Customer::find($request->customer);
-        $totalrows = 16;
+        $totalRows = 20;
         $totalChunks = $groups->get()->count();
 
         return Pdf::view('orders.customer-print', [
-            'groups' => $groups->get(), 
-            'totalrows' => $totalrows, 
+            'groups' => $groups->get(),
+            'customer' => $customer,
+            'date' => $groups->first()->date ?? '',
+            'totalRows' => $totalRows,
             'totalChunks' => $totalChunks,
-            'customer' => $customer, 
-            'date' => $groups->first()->date ?? ''
-            ])
+        ])
             ->paperSize(177, 217, 'mm')
             ->headerView('partials._header')
-            ->margins(30, 15, 20, 5)
+            ->margins(30, 7, 10, 7)
             ->withBrowsershot(function ($browsershot) {
                 $browsershot->setChromePath(env('BROWSER_PATH'))->noSandbox();
             })
