@@ -272,7 +272,7 @@ class OrderController extends Controller
         ])
             ->paperSize(177, 217, 'mm')
             ->headerView('partials._header')
-            ->margins(30, 7, 10, 7)
+            ->margins(30, 5, 23, 5, 'mm')
             ->withBrowsershot(function ($browsershot) {
                 $browsershot->setChromePath(env('BROWSER_PATH'))->noSandbox();
             })
