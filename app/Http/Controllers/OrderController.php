@@ -14,6 +14,32 @@ use function PHPUnit\Framework\isNumeric;
 
 class OrderController extends Controller
 {
+    private function getFilteredOrders(Request $request)
+    {
+        $query = Order::with(['customer', 'buyinfos.item', 'buyinfos.dealer', 'sellinfos.item'])
+            ->orderBy('date', 'desc');
+
+        if ($request->from && $request->to) {
+            $query->whereBetween('date', [$request->from, $request->to]);
+        } elseif ($request->from) {
+            $query->whereDate('date', '>=', $request->from);
+        } elseif ($request->to) {
+            $query->whereDate('date', '<=', $request->to);
+        }
+
+        if ($request->customer) {
+            $query->where('customer_id', $request->customer);
+        }
+
+        if ($request->dealer) {
+            $query->whereHas('buyinfos', function ($q) use ($request) {
+                $q->where('dealer_id', $request->dealer);
+            });
+        }
+
+        return $query;
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -228,74 +254,5 @@ class OrderController extends Controller
         $order->sellinfos()->delete();
         $order->delete();
         return redirect()->route('orders.index');
-    }
-
-    private function getFilteredOrders(Request $request)
-    {
-        $query = Order::with(['customer', 'buyinfos.item', 'buyinfos.dealer', 'sellinfos.item'])
-            ->orderBy('date', 'desc');
-
-        if ($request->from && $request->to) {
-            $query->whereBetween('date', [$request->from, $request->to]);
-        } elseif ($request->from) {
-            $query->whereDate('date', '>=', $request->from);
-        } elseif ($request->to) {
-            $query->whereDate('date', '<=', $request->to);
-        }
-
-        if ($request->customer) {
-            $query->where('customer_id', $request->customer);
-        }
-
-        if ($request->dealer) {
-            $query->whereHas('buyinfos', function ($q) use ($request) {
-                $q->where('dealer_id', $request->dealer);
-            });
-        }
-
-        return $query;
-    }
-
-    public function print(Request $request)
-    {
-        $groups = Order::with(['customer', 'buyinfos.item', 'buyinfos.dealer', 'sellinfos.item'])
-            ->orderBy('date', 'desc');
-
-        if ($request->from && $request->to) {
-            $query->whereBetween('date', [$request->from, $request->to]);
-        } elseif ($request->from) {
-            $query->whereDate('date', '>=', $request->from);
-        } elseif ($request->to) {
-            $query->whereDate('date', '<=', $request->to);
-        }
-
-        if ($request->customer) {
-            $query->where('customer_id', $request->customer);
-        }
-
-        if ($request->dealer) {
-            $query->whereHas('buyinfos', function ($q) use ($request) {
-                $q->where('dealer_id', $request->dealer);
-            });
-        }
-
-        $customer = Customer::find($request->customer);
-        $totalRows = 16;
-        $totalChunks = $groups->get()->count();
-
-        return Pdf::view('orders.customer-print', [
-            'groups' => $groups->get(),
-            'customer' => $customer,
-            'date' => $groups->first()->date ?? '',
-            'totalRows' => $totalRows,
-            'totalChunks' => $totalChunks,
-        ])
-            ->paperSize(182, 257, 'mm')
-            ->headerView('partials._header')
-            ->margins(43, 12, 13, 5, 'mm')
-            ->withBrowsershot(function ($browsershot) {
-                $browsershot->setChromePath(env('BROWSER_PATH'))->noSandbox();
-            })
-            ->name('orders.pdf');
     }
 }

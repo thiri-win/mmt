@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use Laravel\Fortify\Features;
 use App\Models\Order;
+use App\Http\Controllers\OrderPrintController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -61,7 +62,7 @@ Route::get('dashboard', function () {
 
 require __DIR__ . '/settings.php';
 
-Route::get('orders/print', [OrderController::class, 'print'])->middleware('auth')->name('orders.print');
+Route::get('orders/print', [OrderPrintController::class, 'print'])->middleware('auth')->name('orders.print');
 Route::resource("orders", OrderController::class)->middleware('auth');
 Route::resource('expenses', \App\Http\Controllers\ExpenseController::class)->middleware('auth');
 
