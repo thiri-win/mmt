@@ -16,7 +16,10 @@
 
         * {
             font-family: 'padauk';
-            font-size: 14px;
+            font-size: 14px !important;
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
         }
 
         table {
@@ -34,7 +37,7 @@
         }
 
         td div {
-            height: 20px !important;
+            height: 7mm !important;
             overflow: hidden;
         }
 
@@ -136,7 +139,7 @@
                 @endphp
                 <tr>
                     <td>{{ $order->date->format('d-m-y') }}</td>
-                    <td>{{ $order->location }}</td>
+                    <td><div>{{ $order->location }}</div></td>
                     <td>
                         @if($order->customer->id !== 13)
                             @foreach ($order->sellinfos as $index => $info)

@@ -17,13 +17,13 @@
 
     header {
         width: 100%;
-        padding: 0px 25px;
-        padding-top: 7px;
+        /* padding-top: 10mm; */
     }
 
     .heading {
         text-align: center;
-        margin-bottom: 5px;
+        margin-top: 10mm;
+        margin-bottom: 5mm;
     }
 
     .heading h1 {

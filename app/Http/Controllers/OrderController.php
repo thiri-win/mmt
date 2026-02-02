@@ -258,9 +258,29 @@ class OrderController extends Controller
 
     public function print(Request $request)
     {
-        $groups = $this->getFilteredOrders($request);
+        $groups = Order::with(['customer', 'buyinfos.item', 'buyinfos.dealer', 'sellinfos.item'])
+            ->orderBy('date', 'desc');
+
+        if ($request->from && $request->to) {
+            $query->whereBetween('date', [$request->from, $request->to]);
+        } elseif ($request->from) {
+            $query->whereDate('date', '>=', $request->from);
+        } elseif ($request->to) {
+            $query->whereDate('date', '<=', $request->to);
+        }
+
+        if ($request->customer) {
+            $query->where('customer_id', $request->customer);
+        }
+
+        if ($request->dealer) {
+            $query->whereHas('buyinfos', function ($q) use ($request) {
+                $q->where('dealer_id', $request->dealer);
+            });
+        }
+
         $customer = Customer::find($request->customer);
-        $totalRows = 20;
+        $totalRows = 16;
         $totalChunks = $groups->get()->count();
 
         return Pdf::view('orders.customer-print', [
@@ -270,9 +290,9 @@ class OrderController extends Controller
             'totalRows' => $totalRows,
             'totalChunks' => $totalChunks,
         ])
-            ->paperSize(177, 217, 'mm')
+            ->paperSize(182, 257, 'mm')
             ->headerView('partials._header')
-            ->margins(30, 5, 23, 5, 'mm')
+            ->margins(43, 12, 13, 5, 'mm')
             ->withBrowsershot(function ($browsershot) {
                 $browsershot->setChromePath(env('BROWSER_PATH'))->noSandbox();
             })
