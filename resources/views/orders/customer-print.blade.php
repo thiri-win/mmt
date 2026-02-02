@@ -91,9 +91,9 @@
     $allPageTotals = [];
     $grandTotalAllPages = 0;
     $romanMap = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
-    $columnSum = 0;
 @endphp
 @foreach ($chunks as $index => $chunk)
+    @php $columnSum = 0; @endphp
     <div class="page-break">
         <table class="table-mb">
             <tr>
