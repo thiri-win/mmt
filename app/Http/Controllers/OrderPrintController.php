@@ -36,19 +36,38 @@ class OrderPrintController extends Controller
         $totalRows = 16;
         $totalChunks = $groups->get()->count();
 
-        return Pdf::view('orders.customer-print', [
-            'groups' => $groups->get(),
-            'customer' => $customer,
-            'date' => $groups->first()->date ?? '',
-            'totalRows' => $totalRows,
-            'totalChunks' => $totalChunks,
-        ])
-            ->paperSize(182, 257, 'mm')
-            ->headerView('partials._header')
-            ->margins(43, 12, 13, 5, 'mm')
-            ->withBrowsershot(function ($browsershot) {
-                $browsershot->setChromePath(env('BROWSER_PATH'))->noSandbox();
-            })
-            ->name('orders.pdf');
+        if ($request->customer == 13) {
+            return Pdf::view('orders.myo-customer-print', [
+                'groups' => $groups->get(),
+                'customer' => $customer,
+                'date' => $groups->first()->date ?? '',
+                'totalRows' => $totalRows,
+                'totalChunks' => $totalChunks,
+            ])
+                ->paperSize(182, 257, 'mm')
+                ->headerView('partials._header')
+                ->margins(43, 12, 13, 5, 'mm')
+                ->withBrowsershot(function ($browsershot) {
+                    $browsershot->setChromePath(env('BROWSER_PATH'))->noSandbox();
+                })
+                ->name('orders.pdf');
+        } else {
+            return Pdf::view('orders.customer-print', [
+                'groups' => $groups->get(),
+                'customer' => $customer,
+                'date' => $groups->first()->date ?? '',
+                'totalRows' => $totalRows,
+                'totalChunks' => $totalChunks,
+            ])
+                ->paperSize(182, 257, 'mm')
+                ->headerView('partials._header')
+                ->margins(43, 12, 13, 5, 'mm')
+                ->withBrowsershot(function ($browsershot) {
+                    $browsershot->setChromePath(env('BROWSER_PATH'))->noSandbox();
+                })
+                ->name('orders.pdf');
+        }
+
+
     }
 }

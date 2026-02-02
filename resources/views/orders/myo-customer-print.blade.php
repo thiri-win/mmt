@@ -87,10 +87,26 @@
 <body>
 
 @php
-    $chunks = $groups->chunk($totalRows);
-    $allPageTotals = [];
-    $grandTotalAllPages = 0;
-    $romanMap = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+    //    $chunks = $groups->chunk($totalRows);
+        $allPageTotals = [];
+        $grandTotalAllPages = 0;
+        $romanMap = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+        $groupedByDate = $groups->groupBy(function($item) {
+            return $item->date->format('Y-m-d');
+        });
+        $rows = [];
+        foreach ($groupedByDate as $date => $dayOrders) {
+            $rows[] = (object) [
+                'date' => $dayOrders->first()->date, // format ပြန်ပြောင်းဖို့ Carbon object အတိုင်းထားပါ
+                'location' => $dayOrders->pluck('location')->unique()->implode(', '),
+                'count' => $dayOrders->sum('count'),
+                'grand_total' => $dayOrders->sum('grand_total'), // ဒါက နေ့စွဲအလိုက် total ပါ
+                'sellinfos' => $dayOrders->flatMap->sellinfos // အမျိုးအစားတွေ ပြန်ပြဖို့
+            ];
+        }
+
+        // ပြီးမှ စာမျက်နှာအလိုက် chunk ပြန်ခွဲပါ
+        $chunks = collect($rows)->chunk($totalRows);
 @endphp
 @foreach ($chunks as $index => $chunk)
     @php $columnSum = 0; @endphp
@@ -98,7 +114,7 @@
         <table class="table-mb">
             <tr>
                 <td class="border-0 w-15">
-                    <div><label for="Customer">အမည်</label></div>
+                    <div><label for="Customer">အမည် myo myo</label></div>
                 </td>
                 <td class="border-b w-35">
                     <span>{{ $customer->name ?? '' }}</span>
@@ -107,7 +123,7 @@
                     <label for="date">နေ့စွဲ</label>
                 </td>
                 <td class="border-b w-35">
-                    <span>{{$date->format('M-Y')}}</span>
+                    <span>{{\Carbon\Carbon::parse($date)->format('M-Y')}}</span>
                 </td>
             </tr>
             <tr>
@@ -139,17 +155,8 @@
                 @endphp
                 <tr>
                     <td>{{ $order->date->format('d-m-y') }}</td>
-                    <td>
-                        <div>{{ $order->location }}</div>
-                    </td>
-                    <td>
-                        @foreach ($order->sellinfos as $index => $info)
-                            {{ $info->item?->name }}
-                            @if ($index < count($order->sellinfos) - 1)
-                                +
-                            @endif
-                        @endforeach
-                    </td>
+                    <td></td>
+                    <td></td>
                     <td class="text-center">{{ $order->count }}</td>
                     <td class="text-right">{{ number_format($order->grand_total) }}</td>
                 </tr>
@@ -233,7 +240,7 @@
                     <label for="date">နေ့စွဲ</label>
                 </td>
                 <td class="border-b w-35">
-                    <span>{{$date->format('M-Y')}}</span>
+                    <span>{{\Carbon\Carbon::parse($date)->format('M-Y')}}</span>
                 </td>
             </tr>
             <tr>
