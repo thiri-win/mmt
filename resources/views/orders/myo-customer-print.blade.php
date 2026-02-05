@@ -114,7 +114,7 @@
         <table class="table-mb">
             <tr>
                 <td class="border-0 w-15">
-                    <div><label for="Customer">အမည် myo myo</label></div>
+                    <div><label for="Customer">အမည်</label></div>
                 </td>
                 <td class="border-b w-35">
                     <span>{{ $customer->name ?? '' }}</span>
@@ -154,7 +154,7 @@
                     $columnSum += (float) $order->grand_total;
                 @endphp
                 <tr>
-                    <td>{{ $order->date->format('d-m-y') }}</td>
+                    <td><div>{{ $order->date->format('d-m-y') }}</div></td>
                     <td></td>
                     <td></td>
                     <td class="text-center">{{ $order->count }}</td>
