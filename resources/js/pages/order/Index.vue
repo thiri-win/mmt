@@ -50,18 +50,6 @@ const clearFilter = () => {
     });
 };
 
-// printUrl ကို အောက်ပါအတိုင်း ပြင်ပါ
-const printUrl = computed(() => {
-    const params = new URLSearchParams({
-        from: form.from,
-        to: form.to,
-        customer: form.customer,
-        dealer: form.dealer,
-    }).toString();
-
-    return `/orders/print?${params}`;
-});
-
 const confirmDelete = (e) => {
     if (!confirm('Are you sure you want to delete this order?')) {
         e.preventDefault();
@@ -72,9 +60,6 @@ const confirmDelete = (e) => {
     <AppLayout>
         <Head title="စာရင်းများကြည့်ရန်"></Head>
         <div class="container mx-auto">
-            <Link :href="route('orders.create')" class="link"
-                >+ စာရင်းအသစ်ရေးရန်</Link
-            >
             <div class="mb-4 flex flex-wrap items-end gap-3">
                 <div>
                     <label class="mb-1 block text-sm font-medium" for="from"
@@ -146,11 +131,10 @@ const confirmDelete = (e) => {
                 >
                     Clear
                 </button>
-                <a
-                    :href="printUrl"
-                    target="_blank"
+                <Link
+                    :href="route('orders.select.print')"
                     class="rounded border px-3 py-1"
-                    >Print</a
+                    >Print</Link
                 >
             </div>
             <table class="my-table w-full! border">
@@ -175,7 +159,7 @@ const confirmDelete = (e) => {
                 <tbody>
                     <template v-for="group in groups" :key="group.date">
                         <tr class="bg-gray-100/60 dark:bg-gray-100/10">
-                            <td colspan="12" class="font-semibold">
+                            <td colspan="13" class="font-semibold">
                                 {{ group.date }}
                             </td>
                         </tr>

@@ -58,6 +58,10 @@
             border: 0;
         }
 
+        .w-40 {
+            width: 40%;
+        }
+
         .w-35 {
             width: 35%;
         }
@@ -87,11 +91,12 @@
 <body>
 
 @php
-    $chunks = $groups->chunk($totalRows);
     $allPageTotals = [];
     $grandTotalAllPages = 0;
     $romanMap = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+    $chunks = $orderData->chunk($totalRows);
 @endphp
+
 @foreach ($chunks as $index => $chunk)
     @php $columnSum = 0; @endphp
     <div class="page-break">
@@ -107,7 +112,7 @@
                     <label for="date">နေ့စွဲ</label>
                 </td>
                 <td class="border-b w-35">
-                    <span>{{$date->format('M-Y')}}</span>
+                    <span>{{$group_by_date ? \Carbon\Carbon::parse($index)->format('M-Y') : $chunk->first()->date->format('M-Y')}}</span>
                 </td>
             </tr>
             <tr>
@@ -115,8 +120,12 @@
                     <div><label for="">အကြောင်းအရာ</label></div>
                 </td>
                 <td colspan="3" class="border-b">
-                    @if(count($chunks) > 1)
+                    @if($group_by_location)
+                        <span>{{ $chunks[$index]->location }}</span>
+                    @elseif(count($chunks) > 1)
                         <span>Voucher {{ $romanMap[$index] ?? ($index+1) }}</span>
+                    @else
+                        <span></span>
                     @endif
                 </td>
             </tr>
@@ -125,39 +134,47 @@
         <table>
             <thead>
             <tr>
-                <th>နေ့စွဲ</th>
-                <th>နေရာ</th>
-                <th>အမျိုးအစား</th>
-                <th>ခေါက်ရေ</th>
-                <th>စုစုပေါင်း</th>
+                <th class="w-15">နေ့စွဲ</th>
+                <th class="w-40">နေရာ</th>
+                <th class="w-15">အမျိုးအစား</th>
+                <th class="w-15">ခေါက်ရေ</th>
+                <th class="w-15">စုစုပေါင်း</th>
             </tr>
             </thead>
             <tbody>
-            @foreach ($chunk as $order)
+            @foreach ($chunk as $key => $order)
+
                 @php
-                    $columnSum += (float) $order->grand_total;
+                    if($group_by_date) $columnSum += (float) $order->sum('grand_total');
+                    elseif($group_by_location) $columnSum += (float) $chunk->grand_total;
+                    else $columnSum += (float) $order->grand_total;
                 @endphp
+
                 <tr>
-                    <td>{{ $order->date->format('d-m-y') }}</td>
                     <td>
-                        <div>@if($show_location)
-                                {{ $order->location }}
-                            @endif</div>
+                        <div>
+                            {{ $group_by_date ? \Carbon\Carbon::parse($key)->format('d-m-Y') : $order->date->format('d-m-Y') }}
+                        </div>
                     </td>
+
                     <td>
-                        @if($show_item)
-                            @foreach ($order->sellinfos as $index => $info)
-                                {{ $info->item?->name }}
-                                @if ($index < count($order->sellinfos) - 1)
-                                    +
-                                @endif
-                            @endforeach
+                        {{$show_location && $group_by_date ? $order->pluck('location')->unique()->implode(',') : ($show_location ? $order->location : '')}}
+                    </td>
+
+                    <td>
+                        @if($show_item && $group_by_date)
+                            <span>{{$order->flatMap->sellinfos->pluck('item.name')->unique()->implode(',')}}</span>
+                        @elseif($show_item)
+                            <span>{{$order->sellinfos->pluck('item.name')->unique()->implode(',')}}</span>
+                        @else
+                            <span></span>
                         @endif
                     </td>
-                    <td class="text-center">{{ $order->count }}</td>
-                    <td class="text-right">{{ number_format($order->grand_total) }}</td>
+                    <td class="text-center">{{ $group_by_date ? $order->sum('count') : $order->count }}</td>
+                    <td class="text-right">{{ number_format($group_by_date ? $order->sum('grand_total') : $order->grand_total) }}</td>
                 </tr>
             @endforeach
+
             @php
                 $remainingRows = $totalRows - count($chunk);
             @endphp
@@ -201,7 +218,7 @@
                     စရံငွေ
                 </td>
                 <td class="text-right font-bold">
-                    0
+
                 </td>
             </tr>
             <tr>
@@ -211,12 +228,13 @@
                     ကျန်ငွေ
                 </td>
                 <td class="text-right font-bold">
-                    0
+
                 </td>
             </tr>
             </tfoot>
         </table>
     </div>
+
     @php
         $allPageTotals[] = $columnSum;
         $grandTotalAllPages += $columnSum;
@@ -237,7 +255,7 @@
                     <label for="date">နေ့စွဲ</label>
                 </td>
                 <td class="border-b w-35">
-                    <span>{{$date->format('M-Y')}}</span>
+                    <span>{{\Carbon\Carbon::parse($date)->format('M-Y')}}</span>
                 </td>
             </tr>
             <tr>
@@ -305,7 +323,7 @@
                     စရံငွေ
                 </td>
                 <td class="text-right font-bold">
-                    0
+                    {{(number_format($prepaid_amount))}}
                 </td>
             </tr>
             <tr>
@@ -314,7 +332,7 @@
                     ကျန်ငွေ
                 </td>
                 <td class="text-right font-bold">
-                    0
+                    {{number_format($grandTotalAllPages - $prepaid_amount)}}
                 </td>
             </tr>
             </tfoot>

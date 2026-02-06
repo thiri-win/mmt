@@ -45,6 +45,12 @@ class OrderController extends Controller
      */
     public function index(Request $request)
     {
+        if($request->hasAny(['from', 'to', 'customer', 'dealer'])) {
+            session(['order_filters' => $request->only(['from', 'to', 'customer', 'dealer'])]);
+        } else {
+            $saveFilters = session('order_filters', []);
+            $request->merge($saveFilters);
+        }
         $groups = $this->getFilteredOrders($request)->get()
             ->groupBy(function ($order) {
                 return \Carbon\Carbon::parse($order->date)->toDateString();
@@ -151,7 +157,7 @@ class OrderController extends Controller
             'order' => $order->load(['buyinfos', 'sellinfos']),
             'items' => Item::all(),
             'dealers' => Dealer::all(),
-            'customers' => Customer::all()
+            'customers' => Customer::all(),
         ]);
     }
 

@@ -58,6 +58,10 @@
             border: 0;
         }
 
+        .w-40 {
+            width: 40%;
+        }
+
         .w-35 {
             width: 35%;
         }
@@ -87,27 +91,13 @@
 <body>
 
 @php
-    //    $chunks = $groups->chunk($totalRows);
-        $allPageTotals = [];
-        $grandTotalAllPages = 0;
-        $romanMap = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
-        $groupedByDate = $groups->groupBy(function($item) {
-            return $item->date->format('Y-m-d');
-        });
-        $rows = [];
-        foreach ($groupedByDate as $date => $dayOrders) {
-            $rows[] = (object) [
-                'date' => $dayOrders->first()->date, // format ပြန်ပြောင်းဖို့ Carbon object အတိုင်းထားပါ
-                'location' => $dayOrders->pluck('location')->unique()->implode(', '),
-                'count' => $dayOrders->sum('count'),
-                'grand_total' => $dayOrders->sum('grand_total'), // ဒါက နေ့စွဲအလိုက် total ပါ
-                'sellinfos' => $dayOrders->flatMap->sellinfos // အမျိုးအစားတွေ ပြန်ပြဖို့
-            ];
-        }
-
-        // ပြီးမှ စာမျက်နှာအလိုက် chunk ပြန်ခွဲပါ
-        $chunks = collect($rows)->chunk($totalRows);
+    $allPageTotals = [];
+    $grandTotalAllPages = 0;
+    $romanMap = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+    $rows = [];
+    $chunks = $orderData;
 @endphp
+
 @foreach ($chunks as $index => $chunk)
     @php $columnSum = 0; @endphp
     <div class="page-break">
@@ -131,21 +121,21 @@
                     <div><label for="">အကြောင်းအရာ</label></div>
                 </td>
                 <td colspan="3" class="border-b">
-                    @if(count($chunks) > 1)
-                        <span>Voucher {{ $romanMap[$index] ?? ($index+1) }}</span>
-                    @endif
+                    {{--                    @if(count($chunks) > 1)--}}
+                    {{--                        <span>Voucher {{ $romanMap[$index] ?? ($index+1) }}</span>--}}
+                    {{--                    @endif--}}
+                    {{$chunk->first()->location}}
                 </td>
             </tr>
         </table>
-
         <table>
             <thead>
             <tr>
-                <th>နေ့စွဲ</th>
-                <th>နေရာ</th>
-                <th>အမျိုးအစား</th>
-                <th>ခေါက်ရေ</th>
-                <th>စုစုပေါင်း</th>
+                <th class="w-15">နေ့စွဲ</th>
+                <th class="w-40">နေရာ</th>
+                <th class="w-15">အမျိုးအစား</th>
+                <th class="w-15">ခေါက်ရေ</th>
+                <th class="w-15">စုစုပေါင်း</th>
             </tr>
             </thead>
             <tbody>
@@ -154,15 +144,26 @@
                     $columnSum += (float) $order->grand_total;
                 @endphp
                 <tr>
-                    <td><div>{{ $order->date->format('d-m-y') }}</div></td>
-                    <td></td>
-                    <td></td>
+                    <td>
+                        <div>{{ $order->date->format('d-m-y') }}</div>
+                    </td>
+                    @if($show_location)
+                        <td>{{$order->location}}</td>
+                    @else
+                        <td></td>
+                    @endif
+                    @if($show_item)
+                        <td>{{$order->sellinfos->pluck('item.name')->unique()->implode(', ')}}</td>
+                    @else
+                        <td></td>
+                    @endif
                     <td class="text-center">{{ $order->count }}</td>
                     <td class="text-right">{{ number_format($order->grand_total) }}</td>
                 </tr>
             @endforeach
+
             @php
-                $remainingRows = $totalRows - count($chunk);
+                $remainingRows = $totalRows - count($chunks);
             @endphp
             @for ($i = 0; $i < $remainingRows; $i++)
                 <tr>
@@ -204,7 +205,9 @@
                     စရံငွေ
                 </td>
                 <td class="text-right font-bold">
-                    0
+                    @if(count($orderData) == 1)
+                        {{number_format($prepaid_amount)}}
+                    @endif
                 </td>
             </tr>
             <tr>
@@ -214,7 +217,9 @@
                     ကျန်ငွေ
                 </td>
                 <td class="text-right font-bold">
-                    0
+                    @if(count($orderData) == 1)
+                        {{number_format($grandTotalAllPages-$prepaid_amount)}}
+                    @endif
                 </td>
             </tr>
             </tfoot>
@@ -226,7 +231,7 @@
     @endphp
 @endforeach
 
-@if (count($chunks) > 1)
+@if (count($orderData) > 1)
     <div class="page-break">
         <table class="table-mb">
             <tr>
@@ -264,8 +269,9 @@
                 <tr>
                     <td class="text-center">
                         <div>{{ $index + 1 }}</div>
+
                     </td>
-                    <td colspan="3">Voucher {{ $romanMap[$index] ?? ($index+1) }}</td>
+                    <td colspan="3">{{$chunks->keys()->get($index)}}</td>
                     <td class="text-right">{{ number_format($subTotal) }}</td>
                 </tr>
             @endforeach
@@ -308,7 +314,7 @@
                     စရံငွေ
                 </td>
                 <td class="text-right font-bold">
-                    0
+                    {{(number_format($prepaid_amount))}}
                 </td>
             </tr>
             <tr>
@@ -317,7 +323,7 @@
                     ကျန်ငွေ
                 </td>
                 <td class="text-right font-bold">
-                    0
+                    {{number_format($grandTotalAllPages - $prepaid_amount)}}
                 </td>
             </tr>
             </tfoot>

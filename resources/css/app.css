@@ -237,3 +237,7 @@ th {
 .link {
     @apply border p-2 px-5 rounded-lg  my-2 inline-block;
 }
+
+.print-form input {
+    @apply !w-auto me-2;
+}

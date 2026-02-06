@@ -62,7 +62,9 @@ Route::get('dashboard', function () {
 
 require __DIR__ . '/settings.php';
 
+Route::get('order/print/select', [OrderPrintController::class, 'select'])->middleware('auth')->name('orders.select.print');
 Route::get('orders/print', [OrderPrintController::class, 'print'])->middleware('auth')->name('orders.print');
+
 Route::resource("orders", OrderController::class)->middleware('auth');
 Route::resource('expenses', \App\Http\Controllers\ExpenseController::class)->middleware('auth');
 
