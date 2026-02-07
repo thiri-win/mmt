@@ -34,8 +34,6 @@ class OrderPrintController extends Controller
 
         if ($customerId) $orders->where('customer_id', $customerId);
 
-        $viewTemplate = 'orders.group-by-print';
-
         $orderData = $orders->get();
 
         if ($group_by_date) {
@@ -48,13 +46,12 @@ class OrderPrintController extends Controller
             $orderData = $orders->get()->groupBy(function ($order) {
                 return $order->location;
             });
-            $viewTemplate = 'orders.group-by-location-print';
         }
 
         $customer = Customer::find($customerId);
         $totalRows = 16;
 
-        return Pdf::view($viewTemplate, [
+        return Pdf::view('orders.customer-print', [
 
             'customer' => $customer,
             'date' => $orders->first()->date ?? '',
@@ -74,6 +71,5 @@ class OrderPrintController extends Controller
                 $browsershot->setChromePath(env('BROWSER_PATH'))->noSandbox();
             })
             ->name('orders.pdf');
-
     }
 }
