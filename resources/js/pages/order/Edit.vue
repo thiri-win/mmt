@@ -91,7 +91,9 @@ form.grand_total = computed(() => {
 
     const count = Number(form.count) || 0;
 
-    return (itemsTotal + carRent) * count;
+    const extraCount = Number(form.extra_cost) || 0;
+
+    return (itemsTotal + carRent + extraCount) * count;
 });
 
 const submit = () => {
