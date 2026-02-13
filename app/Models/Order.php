@@ -14,6 +14,7 @@ class Order extends Model
         "customer_id",
         "location",
         "car_rent_cost",
+        "extra_cost",
         "grand_total",
         "count",
         "note",
