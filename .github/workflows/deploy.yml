@@ -33,7 +33,7 @@ jobs:
             composer install --no-dev --optimize-autoloader
 
             # 3. NPM (Memory နည်းရင် npm install အစား npm ci သုံးပါ)
-            npm ci || npm install --no-audit
+            npm install --no-audit
 
             # 4. Build လုပ်မယ်
             npm run build
