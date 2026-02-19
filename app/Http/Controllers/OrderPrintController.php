@@ -6,6 +6,7 @@ use App\Models\Customer;
 use App\Models\Order;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
+use Spatie\Browsershot\Browsershot;
 use Spatie\LaravelPdf\Facades\Pdf;
 
 class OrderPrintController extends Controller
@@ -67,6 +68,9 @@ class OrderPrintController extends Controller
             ->paperSize(182, 257, 'mm')
             ->headerView('partials._header')
             ->margins(43, 12, 13, 5, 'mm')
+            ->withBrowsershot(function (Browsershot $bs) {
+                $bs->noSandbox();
+            })
             ->name('orders.pdf');
     }
 }
