@@ -29,7 +29,7 @@ jobs:
             git fetch --all
             git reset --hard origin/main
 
-            # 2. PHP Dependencies သွင်းမယ်
+            # 2. PHP Dependencies သွင်းမယ် ok
             composer install --no-dev --optimize-autoloader
 
             # 3. NPM (Memory နည်းရင် npm install အစား npm ci သုံးပါ)
