@@ -1,7 +1,7 @@
 <style>
     @font-face {
         font-family: 'padauk';
-        src: url('data:font/truetype;base64,{{ base64_encode(file_get_contents(storage_path('fonts/Padauk-Regular.ttf'))) }}') format('truetype');
+        src: url('{{ storage_path("fonts/Padauk-Regular.ttf") }}') format('truetype');
         font-weight: normal;
         font-style: normal;
     }
@@ -10,7 +10,7 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        font-family: 'padauk';
+        font-family: poppins;
         font-size: 14px;
         line-height: 1.7;
     }
