@@ -93,7 +93,7 @@
     @php
         $allPageTotals = [];
         $grandTotalAllPages = 0;
-        $romanMap = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X'];
+        $romanMap = ['I', 'II', 'III', 'IV', 'V', 'VI', 'VII', 'VIII', 'IX', 'X', 'XI'];
         if ($group_by_location) {
             $chunks = $orderData;
         } else {
