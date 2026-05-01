@@ -28,17 +28,14 @@
 
     .heading h1 {
         font-size: 18px;
-        font-family: 'padauk';
     }
 
     .heading h2 {
         font-size: 16px;
-        font-family: 'padauk';
     }
 
     .heading p {
         font-size: 15px;
-        font-family: 'padauk';
     }
 </style>
 
