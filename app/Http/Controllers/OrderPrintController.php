@@ -68,6 +68,6 @@ class OrderPrintController extends Controller
             ->paperSize(182, 257, 'mm')
             ->headerView('partials._header')
             ->margins(43, 12, 13, 5, 'mm')
-            ->name('orders.pdf');
+            ->name('order.pdf');
     }
 }
