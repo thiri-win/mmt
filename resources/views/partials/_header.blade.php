@@ -6,9 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
+        @php
+            // Font file path ကို သေချာအောင် စစ်ပါ
+            $fontPath = storage_path('fonts/Padauk-Regular.ttf');
+            $base64 = '';
+
+            if (file_exists($fontPath)) {
+                $fontData = file_get_contents($fontPath);
+                $base64 = base64_encode($fontData);
+            }
+        @endphp
         @font-face {
             font-family: 'padauk';
-            src: url('{{ storage_path('fonts/Padauk-Regular.ttf') }}') format('truetype');
+            /* src: url('{{ storage_path('fonts/Padauk-Regular.ttf') }}') format('truetype'); */
+            src: url("data:font/truetype;base64,{{ $base64 }}") format('truetype');
             font-weight: normal;
             font-style: normal;
         }
