@@ -8,8 +8,8 @@
     <style>
         @font-face {
             font-family: 'padauk';
-            /* src: url('{{ storage_path('fonts/Padauk-Regular.ttf') }}') format('truetype'); */
-            src: url("file://{{ storage_path('fonts/Padauk-Regular.ttf') }}") format("truetype");
+            src: url('{{ storage_path('fonts/Padauk-Regular.ttf') }}') format('truetype');
+            /* src: url("file://{{ storage_path('fonts/Padauk-Regular.ttf') }}") format("truetype"); */
             font-weight: normal;
             font-style: normal;
         }
