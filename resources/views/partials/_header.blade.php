@@ -10,9 +10,10 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        font-family: 'padauk';
+        font-family: 'padauk' !important;
         font-size: 14px;
         line-height: 1.7;
+        text-rendering: optimizeLegibility;
     }
 
     header {
