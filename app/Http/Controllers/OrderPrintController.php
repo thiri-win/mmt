@@ -66,8 +66,9 @@ class OrderPrintController extends Controller
             'show_item' => $show_item,
         ])
             ->paperSize(182, 257, 'mm')
-            ->headerView('partials._header')
-            ->margins(43, 12, 13, 5, 'mm')
+            // ->headerView('partials._header')
+            // ->margins(43, 12, 13, 5, 'mm')
+            ->margins(8, 12, 13, 5, 'mm')
             ->name('order.pdf');
     }
 }
