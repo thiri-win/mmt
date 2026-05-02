@@ -10,7 +10,7 @@
         padding: 0;
         margin: 0;
         box-sizing: border-box;
-        font-family: poppins;
+        font-family: 'padauk';
         font-size: 14px;
         line-height: 1.7;
     }
