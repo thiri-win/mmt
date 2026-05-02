@@ -6,18 +6,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-        @font-face {
+        @import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap');
+
+        /* @font-face {
             font-family: 'padauk';
             src: url('{{ storage_path('fonts/Padauk-Regular.ttf') }}') format('truetype');
             font-weight: normal;
             font-style: normal;
-        }
+        } */
 
         * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
-            font-family: 'padauk' !important;
+            font-family: 'Padauk', sans-serif !important;
             font-size: 14px;
             line-height: 1.7;
         }
