@@ -52,9 +52,6 @@ class OrderPrintController extends Controller
         $customer = Customer::find($customerId);
         $totalRows = 16;
 
-        $fontPath = storage_path('fonts/Padauk-Regular.ttf');
-        $fontBase64 = base64_encode(file_get_contents($fontPath));
-
         return Pdf::view('orders.customer-print', [
 
             'customer' => $customer,
@@ -69,9 +66,7 @@ class OrderPrintController extends Controller
             'show_item' => $show_item,
         ])
             ->paperSize(182, 257, 'mm')
-            ->headerView('partials._header', [
-                'fontBase64' => $fontBase64,
-            ])
+            ->headerView('partials._header')
             ->margins(43, 12, 13, 5, 'mm')
             ->name('orders.pdf');
     }
