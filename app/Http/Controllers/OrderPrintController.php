@@ -65,6 +65,16 @@ class OrderPrintController extends Controller
             'show_location' => $show_location,
             'show_item' => $show_item,
         ])
+            ->withBrowsershot(function ($browsershot) {
+                $browsershot
+                    ->setNodeBinary('/usr/bin/node')
+                    ->setNpmBinary('/usr/bin/npm')
+                    ->noSandbox()
+                    ->setOption('args', [
+                        '--disable-web-security',
+                        '--allow-file-access-from-files'
+                    ]);
+            })
             ->paperSize(182, 257, 'mm')
             ->headerView('partials._header')
             ->margins(43, 12, 13, 5, 'mm')
