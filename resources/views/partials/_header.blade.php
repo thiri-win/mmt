@@ -6,7 +6,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <style>
-
         @font-face {
             font-family: 'padauk';
             /* src: url('{{ storage_path('fonts/Padauk-Regular.ttf') }}') format('truetype'); */
