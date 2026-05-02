@@ -65,13 +65,6 @@ class OrderPrintController extends Controller
             'show_location' => $show_location,
             'show_item' => $show_item,
         ])
-            ->withBrowsershot(function ($browsershot) {
-                $browsershot
-                    ->setNodeBinary('/usr/bin/node') // သင်၏ node path
-                    ->setNpmBinary('/usr/bin/npm')   // သင်၏ npm path
-                    ->noSandbox()                    // Linux Server အတွက် မဖြစ်မနေလိုအပ်
-                    ->setOption('args', ['--disable-setuid-sandbox']);
-            })
             ->paperSize(182, 257, 'mm')
             ->headerView('partials._header')
             ->margins(43, 12, 13, 5, 'mm')
