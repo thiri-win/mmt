@@ -5,24 +5,21 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap" rel="stylesheet">
     <style>
-        /* @import url('https://fonts.googleapis.com/css2?family=Padauk:wght@400;700&display=swap'); */
 
-        /* @font-face {
+        @font-face {
             font-family: 'padauk';
-            src: url('{{ storage_path('fonts/Padauk-Regular.ttf') }}') format('truetype');
+            /* src: url('{{ storage_path('fonts/Padauk-Regular.ttf') }}') format('truetype'); */
+            src: url("data:application/x-font-ttf;base64,{{ $fontBase64 }}") format("truetype");
             font-weight: normal;
             font-style: normal;
-        } */
+        }
 
         * {
             padding: 0;
             margin: 0;
             box-sizing: border-box;
-            font-family: 'Padauk', sans-serif !important;
+            font-family: 'padauk', sans-serif !important;
             font-size: 14px;
             line-height: 1.7;
         }
