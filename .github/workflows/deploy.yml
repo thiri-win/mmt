@@ -22,7 +22,7 @@ jobs:
           username: ${{ secrets.EC2_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /var/www/mmt
+            cd /var/www/html/mmt
 
             # 1. Server ပေါ်က Local changes တွေကို ဖယ်ပြီး Code အသစ်ဆွဲမယ်
             git fetch --all
