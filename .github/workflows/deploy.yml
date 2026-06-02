@@ -2,8 +2,7 @@ name: Optimized Laravel Deploy to EC2
 
 on:
   push:
-    branches:
-      - main
+    branches: [ main ]
   workflow_dispatch:
 
 jobs:
@@ -32,13 +31,7 @@ jobs:
             # 2. PHP Dependencies သွင်းမယ် ok
             composer install --no-dev --optimize-autoloader
 
-            # 3. NPM (Memory နည်းရင် npm install အစား npm ci သုံးပါ)
-            npm install --no-audit
-
-            # 4. Build လုပ်မယ်
-            npm run build
-
-            # 5. Laravel Optimization & Permissions
+            # 3. Laravel Optimization & Permissions
             php artisan optimize:clear
             php artisan config:cache
             php artisan route:cache
